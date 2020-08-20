@@ -3,6 +3,9 @@
 __all__ = ['ISTAT']
 
 # Cell
+import requests
+
+# Cell
 class ISTAT:
 
     def __init__(self):
