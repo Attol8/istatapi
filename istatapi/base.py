@@ -13,7 +13,7 @@ class ISTAT:
         self.agencyID = "IT1"
 
     def _request(self, path, **kwargs):
-
+        """Make a request to ISTAT API"""
         url = "/".join([self.base_url, path])
 
         if 'headers' in kwargs.keys():
