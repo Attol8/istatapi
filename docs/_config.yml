@@ -62,3 +62,4 @@ permalink: pretty
 
 theme: jekyll-theme-cayman
 baseurl: /istatapi/
+encoding: UTF-8
