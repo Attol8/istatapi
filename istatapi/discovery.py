@@ -139,7 +139,6 @@ class DataStructure(ISTAT):
         def parse_dimensions(self, response):
             """Parse the `response` containing a dataflow's dimensions and return them in a list"""
             tree = make_tree(response)
-            print(tree)
             strip_ns(tree)
             root = tree.root
             print(root)
@@ -156,9 +155,6 @@ class DataStructure(ISTAT):
                 dimensions_l.append(dimension_dict)
 
             return(dimensions_l)
-
-        def parse_codelist(self, response):
-            """Parse the `response` containing the codelist of a dimension and return its description"""
 
         def dimensions_description(self, dimensions):
             """Return a dataframe with the descriptions of `dimensions`"""
@@ -210,3 +206,28 @@ class DataStructure(ISTAT):
             dimensions = dimensions.merge(dimensions_description, on='dimension_ID')
 
             return dimensions
+
+        def get_dimension_values(self, dimension_ID, dataframe = True):
+            """Return the possible values of a dimension"""
+            resource = "codelist"
+            path_parts = [resource, self.agencyID, dimension_ID]
+            path = "/".join(path_parts)
+            response = self._request(path = path)
+            tree = make_tree(response)
+            strip_ns(tree)
+            root = tree.root
+
+            values = []
+            for value in root.iter('Code'):
+                value_id = value.get('id')
+                value_it = value.findall('Name')[0].text
+                value_en = value.findall('Name')[1].text
+
+                value_dict = {'value_ID' : value_id,
+                           'description_en' : value_en,
+                           'description_it' : value_it}
+
+                values.append(value_dict)
+
+            if dataframe == True : values = pd.DataFrame(values)
+            return values
