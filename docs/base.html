@@ -5,8 +5,8 @@ title: Base
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Base Class for making requests to ISTAT API"
-description: "Base Class for making requests to ISTAT API"
+summary: "Module for making requests to ISTAT API"
+description: "Module for making requests to ISTAT API"
 nb_path: "00_base.ipynb"
 ---
 <!--
@@ -66,13 +66,6 @@ nb_path: "00_base.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>By passing the correct <code>path</code> to the we can make requests to ISTAT API</p>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -98,6 +91,13 @@ nb_path: "00_base.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The 'ISTAT' class already implements the 'base_url', therefore 'path' only needs to include the other parameters of the request. Here is an example of a succesful request:</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -107,8 +107,8 @@ nb_path: "00_base.ipynb"
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">istat</span> <span class="o">=</span> <span class="n">ISTAT</span><span class="p">()</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;dataflow/IT1&#39;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">istat</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="p">)</span>
-<span class="n">response</span>
+<span class="n">test_response</span> <span class="o">=</span> <span class="n">istat</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="p">)</span>
+<span class="n">test_response</span>
 </pre></div>
 
     </div>

@@ -1,6 +1,8 @@
 {
   "istatapi": {
     "Overview": "/",
-    "Base": "/base"
+    "Base": "/base",
+    "Discovery": "/discovery",
+    "Utils": "/utils"
   }
 }
