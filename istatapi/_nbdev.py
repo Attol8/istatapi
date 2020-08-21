@@ -9,6 +9,7 @@ index = {"ISTAT": "00_base.ipynb",
          "strip_ns": "02_utils.ipynb"}
 
 modules = ["base.py",
+           "discovery.py",
            "utils.py"]
 
 doc_url = "https://Attol8.github.io/istatapi/"

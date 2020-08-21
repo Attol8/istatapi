@@ -115,7 +115,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataFlows" class="doc_header"><code>class</code> <code>DataFlows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L32" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataFlows</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h2 id="DataFlows" class="doc_header"><code>class</code> <code>DataFlows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataFlows</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
 </blockquote>
 <p>Base class to explore available Dataflows</p>
 
@@ -248,7 +248,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataFlows.search" class="doc_header"><code>DataFlows.search</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L81" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataFlows.search</code>(<strong><code>keyword</code></strong>, <strong><code>lang</code></strong>=<em><code>'en'</code></em>)</p>
+<h4 id="DataFlows.search" class="doc_header"><code>DataFlows.search</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataFlows.search</code>(<strong><code>keyword</code></strong>, <strong><code>lang</code></strong>=<em><code>'en'</code></em>)</p>
 </blockquote>
 <p>Search available dataflows that contain <code>keyword</code>. Return these dataflows in a DataFrame</p>
 
@@ -534,7 +534,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataStructure" class="doc_header"><code>class</code> <code>DataStructure</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L93" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataStructure</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h2 id="DataStructure" class="doc_header"><code>class</code> <code>DataStructure</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L72" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataStructure</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
 </blockquote>
 <p>Class that implements methods to retrieve informations about a Dataset</p>
 
@@ -559,7 +559,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_structure_id" class="doc_header"><code>DataStructure.get_df_structure_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L101" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_structure_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_structure_id" class="doc_header"><code>DataStructure.get_df_structure_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_structure_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_structure_id</code> of a dataflow from its <code>df_id</code> or <code>df_description</code></p>
 
@@ -619,7 +619,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_id" class="doc_header"><code>DataStructure.get_df_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_id" class="doc_header"><code>DataStructure.get_df_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L101" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_id</code> of a dataflow from its <code>df_description</code> or <code>df_structure_id</code></p>
 
@@ -677,7 +677,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_description" class="doc_header"><code>DataStructure.get_df_description</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_description</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_description" class="doc_header"><code>DataStructure.get_df_description</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_description</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_description</code> of a dataflow from its <code>df_id</code> or <code>df_structure_id</code></p>
 
@@ -735,7 +735,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_dimensions" class="doc_header"><code>DataStructure.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/base.py#L211" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_dimensions" class="doc_header"><code>DataStructure.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return a Dataframe containing the dimensions (and their descriptions) of a specific dataflow.</p>
 
