@@ -38,53 +38,6 @@ nb_path: "01_discovery.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This module implements functions to discover the data exposed by ISTAT. To do so, <code>istatapi</code> make metadata requests to the API endpoints. The <code>Discovery</code> module provides useful methods to parse and analyze API responses. It makes use of the library <code>pandas</code> and returns data in the <code>DataFrame</code> format, making it convenient for interactive and exploratory analysis in Jupyter Notebooks.</p>
-<p>The URL structure to formulate a metadata REST request is:</p>
-<p><code>http://sdmx.istat.it/SDMXWS/rest/resource/agencyID/resourceID/version/itemID?queryStringParameters</code></p>
-<p>HEre is a description of the parameters for the request:</p>
-<table>
-<thead><tr>
-<th>Path parameter</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>resource (mandatory)</td>
-<td>The type of metadata to be returned. Values: datastructure, metadatastructure, categoryscheme, conceptscheme, codelist, hierarchicalcodelist, organisationscheme, agencyscheme, dataproviderscheme, dataconsumerscheme, organisationunitscheme, dataflow, metadataflow, reportingtaxonomy, provisionagreement, structureset, process, categorisation, contentconstraint, attachmentconstraint, actualconstraint, allowedconstraint, structure</td>
-<td></td>
-</tr>
-<tr>
-<td>agencyID</td>
-<td>Agency maintaining the artefact (e.g.: SDMX)</td>
-<td>all</td>
-</tr>
-<tr>
-<td>resourceID</td>
-<td>Artefact ID (e.g.: CL_FREQ)</td>
-<td>all</td>
-</tr>
-<tr>
-<td>version</td>
-<td>Arterfact version (e.g.: 1.0)</td>
-<td>latest</td>
-</tr>
-<tr>
-<td>itemID</td>
-<td>ID of the item (for item schemes) or hierarchy (for hierarchical codelists) to be returned.</td>
-<td>all</td>
-</tr>
-<tr>
-<td>queryStringParameters (detail)</td>
-<td>Desired amount of information. Values: allstubs, referencestubs, allcompletestubs, referencecompletestubs, referencepartial, full.</td>
-<td>full</td>
-</tr>
-<tr>
-<td>queryStringParameters (references)</td>
-<td>References to be returned with the artefact. Values: none, parents, parentsandsiblings, children, descendants, all, any type of resource.  </td>
-</tr>
-</tbody>
-</table>
 <p>Two main classes are implemented in the <code>Discovery</code> module: <a href="/istatapi/discovery#DataFlows"><code>DataFlows</code></a> and <a href="/istatapi/discovery#DataStructure"><code>DataStructure</code></a>. They both collect methods to explore ISTAT data, their usage and methods are documented below.</p>
 
 </div>
@@ -178,8 +131,7 @@ nb_path: "01_discovery.ipynb"
       <th></th>
       <th>df_id</th>
       <th>version</th>
-      <th>description_en</th>
-      <th>description_it</th>
+      <th>description</th>
       <th>df_structure_id</th>
     </tr>
   </thead>
@@ -189,7 +141,6 @@ nb_path: "01_discovery.ipynb"
       <td>101_1015</td>
       <td>1.2</td>
       <td>Crops</td>
-      <td>Coltivazioni</td>
       <td>DCSP_COLTIVAZIONI</td>
     </tr>
     <tr>
@@ -197,7 +148,6 @@ nb_path: "01_discovery.ipynb"
       <td>101_1030</td>
       <td>1.0</td>
       <td>PDO, PGI and TSG quality products</td>
-      <td>Prodotti agroalimentari di qualità DOP/IGP e STG</td>
       <td>DCSP_DOPIGP</td>
     </tr>
     <tr>
@@ -205,7 +155,6 @@ nb_path: "01_discovery.ipynb"
       <td>101_1033</td>
       <td>1.0</td>
       <td>slaughtering</td>
-      <td>Macellazioni</td>
       <td>DCSP_MACELLAZIONI</td>
     </tr>
     <tr>
@@ -213,7 +162,6 @@ nb_path: "01_discovery.ipynb"
       <td>101_1039</td>
       <td>1.0</td>
       <td>Agritourism - municipalities</td>
-      <td>Agriturismo - comuni</td>
       <td>DCSP_AGRITURISMO_COM</td>
     </tr>
     <tr>
@@ -221,7 +169,6 @@ nb_path: "01_discovery.ipynb"
       <td>101_1077</td>
       <td>1.0</td>
       <td>PDO, PGI and TSG products:  operators - munici...</td>
-      <td>Prodotti di qualità DOP/IGP e STG: operatori -...</td>
       <td>DCSP_DOPIGP_COM</td>
     </tr>
   </tbody>
@@ -248,7 +195,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataFlows.search" class="doc_header"><code>DataFlows.search</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataFlows.search</code>(<strong><code>keyword</code></strong>, <strong><code>lang</code></strong>=<em><code>'en'</code></em>)</p>
+<h4 id="DataFlows.search" class="doc_header"><code>DataFlows.search</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataFlows.search</code>(<strong><code>keyword</code></strong>)</p>
 </blockquote>
 <p>Search available dataflows that contain <code>keyword</code>. Return these dataflows in a DataFrame</p>
 
@@ -264,7 +211,7 @@ nb_path: "01_discovery.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This method looks for <code>keyword</code> inside all datasets descriptions. By default, the <code>keyword</code> needs to be an english word (<code>lang = 'en'</code>), but the method also supports italian words by simply changing the argument <code>lang</code> to <code>'it'</code>. If other languages are used, an error will be thrown.</p>
+<p>This method looks for <code>keyword</code> inside all datasets descriptions. By default, the <code>keyword</code> needs to be an english word.</p>
 
 </div>
 </div>
@@ -276,7 +223,7 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Unemployment&#39;</span><span class="p">,</span> <span class="n">lang</span> <span class="o">=</span> <span class="s1">&#39;en&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Unemployment&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -310,8 +257,7 @@ nb_path: "01_discovery.ipynb"
       <th></th>
       <th>df_id</th>
       <th>version</th>
-      <th>description_en</th>
-      <th>description_it</th>
+      <th>description</th>
       <th>df_structure_id</th>
     </tr>
   </thead>
@@ -321,7 +267,6 @@ nb_path: "01_discovery.ipynb"
       <td>151_874</td>
       <td>1.0</td>
       <td>Unemployment rate  - monthly data</td>
-      <td>Tasso di disoccupazione  - dati mensili</td>
       <td>DCCV_TAXDISOCCUMENS1</td>
     </tr>
     <tr>
@@ -329,7 +274,6 @@ nb_path: "01_discovery.ipynb"
       <td>151_884</td>
       <td>1.0</td>
       <td>Unemployment rate - quarterly seasonally adjus...</td>
-      <td>Tasso di disoccupazione - dati trimestrali des...</td>
       <td>DCCV_TAXDISOCCUDE1</td>
     </tr>
     <tr>
@@ -337,7 +281,6 @@ nb_path: "01_discovery.ipynb"
       <td>151_914</td>
       <td>1.1</td>
       <td>Unemployment  rate</td>
-      <td>Tasso di  disoccupazione</td>
       <td>DCCV_TAXDISOCCU1</td>
     </tr>
     <tr>
@@ -345,7 +288,6 @@ nb_path: "01_discovery.ipynb"
       <td>151_929</td>
       <td>1.1</td>
       <td>Unemployment</td>
-      <td>Disoccupati</td>
       <td>DCCV_DISOCCUPT1</td>
     </tr>
     <tr>
@@ -353,93 +295,7 @@ nb_path: "01_discovery.ipynb"
       <td>172_926</td>
       <td>1.1</td>
       <td>Supplementary  indicators to unemployment</td>
-      <td>Indicatori  complementari</td>
       <td>DCCV_COMPL1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">DataFlows</span><span class="p">()</span>
-<span class="n">datasets</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Disoccupazione&#39;</span><span class="p">,</span> <span class="n">lang</span> <span class="o">=</span> <span class="s1">&#39;it&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>df_id</th>
-      <th>version</th>
-      <th>description_en</th>
-      <th>description_it</th>
-      <th>df_structure_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>79</th>
-      <td>151_874</td>
-      <td>1.0</td>
-      <td>Unemployment rate  - monthly data</td>
-      <td>Tasso di disoccupazione  - dati mensili</td>
-      <td>DCCV_TAXDISOCCUMENS1</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>151_884</td>
-      <td>1.0</td>
-      <td>Unemployment rate - quarterly seasonally adjus...</td>
-      <td>Tasso di disoccupazione - dati trimestrali des...</td>
-      <td>DCCV_TAXDISOCCUDE1</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>151_914</td>
-      <td>1.1</td>
-      <td>Unemployment  rate</td>
-      <td>Tasso di  disoccupazione</td>
-      <td>DCCV_TAXDISOCCU1</td>
     </tr>
   </tbody>
 </table>
@@ -491,7 +347,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataStructure" class="doc_header"><code>class</code> <code>DataStructure</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L72" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataStructure</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h2 id="DataStructure" class="doc_header"><code>class</code> <code>DataStructure</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L67" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataStructure</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
 </blockquote>
 <p>Class that implements methods to retrieve informations about a Dataset</p>
 
@@ -516,7 +372,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_structure_id" class="doc_header"><code>DataStructure.get_df_structure_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_structure_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_structure_id" class="doc_header"><code>DataStructure.get_df_structure_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_structure_id</code>(<strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_structure_id</code> of a dataflow from its <code>df_id</code> or <code>df_description</code></p>
 
@@ -576,7 +432,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_id" class="doc_header"><code>DataStructure.get_df_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L101" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_id</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_id" class="doc_header"><code>DataStructure.get_df_id</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L92" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_id</code>(<strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_id</code> of a dataflow from its <code>df_description</code> or <code>df_structure_id</code></p>
 
@@ -634,7 +490,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_df_description" class="doc_header"><code>DataStructure.get_df_description</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_description</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_df_description" class="doc_header"><code>DataStructure.get_df_description</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L109" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_df_description</code>(<strong><code>lang</code></strong>=<em><code>'en'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return the <code>df_description</code> of a dataflow from its <code>df_id</code> or <code>df_structure_id</code></p>
 
@@ -692,7 +548,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_dimensions" class="doc_header"><code>DataStructure.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataStructure.get_dimensions" class="doc_header"><code>DataStructure.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L170" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Return a Dataframe containing the dimensions (and their descriptions) of a specific dataflow.</p>
 
@@ -734,7 +590,7 @@ nb_path: "01_discovery.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;Element &#39;Structure&#39; at 0x20e6ec410c8&gt;
+<pre>&lt;Element &#39;Structure&#39; at 0x1baa3729408&gt;
 </pre>
 </div>
 </div>
@@ -763,8 +619,7 @@ nb_path: "01_discovery.ipynb"
       <th></th>
       <th>dimension</th>
       <th>dimension_ID</th>
-      <th>description_en</th>
-      <th>description_it</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
@@ -773,56 +628,48 @@ nb_path: "01_discovery.ipynb"
       <td>FREQ</td>
       <td>CL_FREQ</td>
       <td>Frequency</td>
-      <td>Frequenza</td>
     </tr>
     <tr>
       <th>1</th>
       <td>CITTADINANZA</td>
       <td>CL_CITTADINANZA</td>
       <td>Citizenship</td>
-      <td>Cittadinanza</td>
     </tr>
     <tr>
       <th>2</th>
       <td>DURATA_DISOCCUPAZ</td>
       <td>CL_DURATA</td>
       <td>Duration</td>
-      <td>Durata</td>
     </tr>
     <tr>
       <th>3</th>
       <td>CLASSE_ETA</td>
       <td>CL_ETA1</td>
       <td>Age class</td>
-      <td>Classe di età</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ITTER107</td>
       <td>CL_ITTER107</td>
       <td>Territory</td>
-      <td>Territorio</td>
     </tr>
     <tr>
       <th>5</th>
       <td>SESSO</td>
       <td>CL_SEXISTAT1</td>
       <td>Gender</td>
-      <td>Sesso</td>
     </tr>
     <tr>
       <th>6</th>
       <td>TIPO_DATO</td>
       <td>CL_TIPO_DATO_FOL</td>
       <td>Data type FOL</td>
-      <td>Tipo dato FOL</td>
     </tr>
     <tr>
       <th>7</th>
       <td>TITOLO_STUDIO</td>
       <td>CL_TITOLO_STUDIO</td>
       <td>Level of education</td>
-      <td>Titolo di studio</td>
     </tr>
   </tbody>
 </table>
@@ -848,7 +695,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataStructure.get_dimension_values" class="doc_header"><code>DataStructure.get_dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L210" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimension_values</code>(<strong><code>dimension_ID</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="DataStructure.get_dimension_values" class="doc_header"><code>DataStructure.get_dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataStructure.get_dimension_values</code>(<strong><code>dimension_ID</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Return the possible values of a dimension</p>
 
@@ -903,8 +750,7 @@ nb_path: "01_discovery.ipynb"
     <tr style="text-align: right;">
       <th></th>
       <th>value_ID</th>
-      <th>description_en</th>
-      <th>description_it</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
@@ -912,49 +758,41 @@ nb_path: "01_discovery.ipynb"
       <th>0</th>
       <td>T</td>
       <td>total</td>
-      <td>totale</td>
     </tr>
     <tr>
       <th>1</th>
       <td>F</td>
       <td>females</td>
-      <td>femmine</td>
     </tr>
     <tr>
       <th>2</th>
       <td>M</td>
       <td>males</td>
-      <td>maschi</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1</td>
       <td>males</td>
-      <td>maschi</td>
     </tr>
     <tr>
       <th>4</th>
       <td>NRP</td>
       <td>no responce</td>
-      <td>non indicato</td>
     </tr>
     <tr>
       <th>5</th>
       <td>3</td>
       <td>n.a.</td>
-      <td>non indicato</td>
     </tr>
     <tr>
       <th>6</th>
       <td>9</td>
       <td>total</td>
-      <td>totale</td>
     </tr>
     <tr>
       <th>7</th>
       <td>2</td>
       <td>females</td>
-      <td>femmine</td>
     </tr>
   </tbody>
 </table>

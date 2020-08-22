@@ -32,14 +32,14 @@ class DataFlows(ISTAT):
                 lang = name.get("{http://www.w3.org/XML/1998/namespace}lang")
                 if lang == 'en':
                     description_en = name.text
-                if lang == 'it':
-                    description_it = name.text
+                #if lang == 'it':
+                    #description_it = name.text
 
             dataflow_dict = {
             "df_id": id,
             "version": version,
-            "description_en": description_en,
-            "description_it": description_it,
+            "description": description_en,
+            #"description_it": description_it,
             "df_structure_id": structure_id,
             }
 
@@ -57,14 +57,9 @@ class DataFlows(ISTAT):
 
         return dataflows
 
-    def search(self, keyword, lang = 'en'):
+    def search(self, keyword):
         """Search available dataflows that contain `keyword`. Return these dataflows in a DataFrame"""
-        if lang not in ['en', 'it']:
-            raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
-        if lang == 'it':
-            dataflows = self.available[self.available['description_it'].str.contains(keyword, case=False)]
-        if lang == 'en':
-            dataflows = self.available[self.available['description_en'].str.contains(keyword, case=False)]
+        dataflows = self.available[self.available['description'].str.contains(keyword, case=False)]
 
         return dataflows
 
@@ -77,7 +72,7 @@ class DataStructure(ISTAT):
             self.available = DataFlows().available #df with all the available dataflows
             #TODO: Initiate the class with a specific dataset. Retrieve informations only on it (maybe use a dataset loader)
 
-        def get_df_structure_id(self, lang = 'en', **kwargs):
+        def get_df_structure_id(self, **kwargs):
             """Return the `df_structure_id` of a dataflow from its `df_id` or `df_description`"""
             valid_args = ['df_description', 'df_id']
 
@@ -86,19 +81,15 @@ class DataStructure(ISTAT):
 
             #arguments errors
             if arg not in valid_args: raise ValueError(f"{arg} is not a valid argument. Use one of: {', '.join(valid_args)}")
-            elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
+            #elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
 
-            if arg == "df_description":
-                if lang == 'en' :  mask = self.available["description_en"] == arg_value
-                else: mask = self.available["description_it"] == arg_value
-
-            else:
-                mask = self.available[arg] == arg_value
+            if arg == "df_description": mask = self.available["description"] == arg_value
+            else: mask = self.available[arg] == arg_value
 
             df_structure_id = self.available[mask].df_structure_id.values[0]
             return df_structure_id
 
-        def get_df_id(self, lang = 'en', **kwargs):
+        def get_df_id(self, **kwargs):
             """Return the `df_id` of a dataflow from its `df_description` or `df_structure_id`"""
             valid_args = ['df_description', 'df_structure_id']
 
@@ -107,14 +98,10 @@ class DataStructure(ISTAT):
 
             #arguments errors
             if arg not in valid_args: raise ValueError(f"{arg} is not a valid argument. Use one of: {', '.join(valid_args)}")
-            elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
+            #elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
 
-            if arg == "df_description":
-                if lang == 'en' :  mask = self.available["description_en"] == arg_value
-                else: mask = self.available["description_it"] == arg_value
-
-            else:
-                mask = self.available[arg] == arg_value
+            if arg == "df_description" : mask = self.available["description"] == arg_value
+            else : mask = self.available[arg] == arg_value
 
             df_id = self.available[mask].df_id.values[0]
             return df_id
@@ -128,12 +115,10 @@ class DataStructure(ISTAT):
 
             #arguments errors
             if arg not in valid_args: raise ValueError(f"{arg} is not a valid argument. Use one of: {', '.join(valid_args)}")
-            elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
+            #elif lang not in ['en', 'it']: raise ValueError("'lang' must be 'en' (English) or 'it' (Italian)")
 
             mask = self.available[arg] == arg_value
-
-            if lang == 'en' : df_description = self.available[mask].description_en.values[0]
-            else: df_description = self.available[mask].description_it.values[0]
+            df_description = self.available[mask].description.values[0]
             return df_description
 
         def parse_dimensions(self, response):
@@ -171,12 +156,11 @@ class DataStructure(ISTAT):
                 root = tree.root
 
                 description = [x for x in root.iter('Codelist')][0]
-                description_it = description.findall('Name')[0].text
-                description_en = description.findall('Name')[1].text
+                #description_it = description.findall('Name')[0].text
+                description = description.findall('Name')[1].text
 
                 description_dict = {'dimension_ID' : dimension_id,
-                                   'description_en' : description_en,
-                                   'description_it' : description_it}
+                                   'description' : description}
                 descriptions_l.append(description_dict)
 
             dimensions_descriptions = pd.DataFrame(descriptions_l)
@@ -220,12 +204,11 @@ class DataStructure(ISTAT):
             values = []
             for value in root.iter('Code'):
                 value_id = value.get('id')
-                value_it = value.findall('Name')[0].text
-                value_en = value.findall('Name')[1].text
+                #value_it = value.findall('Name')[0].text
+                value = value.findall('Name')[1].text
 
                 value_dict = {'value_ID' : value_id,
-                           'description_en' : value_en,
-                           'description_it' : value_it}
+                           'description' : value}
 
                 values.append(value_dict)
 
