@@ -3,6 +3,7 @@
     "Overview": "/",
     "Base": "/base",
     "Discovery": "/discovery",
-    "Utils": "/utils"
+    "Utils": "/utils",
+    "Retrieval": "/retrieval"
   }
 }

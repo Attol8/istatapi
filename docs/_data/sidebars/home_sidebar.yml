@@ -18,6 +18,9 @@ entries:
     - output: web,pdf
       title: Utils
       url: /utils
+    - output: web,pdf
+      title: Retrieval
+      url: /retrieval
     output: web
     title: istatapi
   output: web
