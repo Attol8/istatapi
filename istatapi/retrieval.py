@@ -4,4 +4,6 @@ __all__ = []
 
 # Cell
 from .discovery import DataSet
+from .base import ISTAT
 import pandas as pd
+import io
