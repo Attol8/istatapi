@@ -38,7 +38,7 @@ nb_path: "01_discovery.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This module implements functions to discover the data exposed by ISTAT. To do so, <code>istatapi</code> make metadata requests to the API endpoints. The <code>Discovery</code> module provides useful methods to parse and analyze API responses. It makes use of the library <code>pandas</code> and returns data in the <code>DataFrame</code> format, making it convenient for interactive and exploratory analysis in Jupyter Notebooks.</p>
-<p>Two main classes are implemented in the <code>Discovery</code> module: <a href="/istatapi/discovery#DataFlows"><code>DataFlows</code></a> and <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>. They both collect methods to explore ISTAT data, their usage and methods are documented below.</p>
+<p>Two main classes are implemented in the <code>Discovery</code> module: <code>DataFlows</code> and <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>. They both collect methods to explore ISTAT data, their usage and methods are documented below.</p>
 
 </div>
 </div>
@@ -68,9 +68,34 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataFlows" class="doc_header"><code>class</code> <code>DataFlows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataFlows</code>() :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h4 id="parse_dataflows" class="doc_header"><code>parse_dataflows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>parse_dataflows</code>(<strong><code>response</code></strong>)</p>
 </blockquote>
-<p>Base class to explore available Dataflows</p>
+<p>parse the <code>response</code> containing all the available datasets and return a list of dataflows.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="all_available" class="doc_header"><code>all_available</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>all_available</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+</blockquote>
+<p>Return all available dataflows</p>
 
 </div>
 
@@ -84,7 +109,7 @@ nb_path: "01_discovery.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The simplest way to get a full list of the dataflows provided by ISTAT is to access the DataFrame in <a href="/istatapi/discovery#DataFlows.available"><code>DataFlows.available</code></a>, which calls the method <a href="/istatapi/discovery#DataFlows.all_available("><code>DataFlows.all_available()</code></a>) and returns a list of all the explorable dataflows, together with their IDs and descriptions.</p>
+<p>The simplest way to get a full list of the dataflows provided by ISTAT is to access the DataFrame in <code>DataFlows.available</code>, which calls the method <code>DataFlows.all_available()</code> and returns a list of all the explorable dataflows, together with their IDs and descriptions.</p>
 
 </div>
 </div>
@@ -96,8 +121,8 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">DataFlows</span><span class="p">()</span>
-<span class="n">datasets</span><span class="o">.</span><span class="n">available</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">available_datasets</span> <span class="o">=</span> <span class="n">all_available</span><span class="p">()</span>
+<span class="n">available_datasets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -195,7 +220,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataFlows.search" class="doc_header"><code>DataFlows.search</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataFlows.search</code>(<strong><code>keyword</code></strong>)</p>
+<h4 id="search_dataset" class="doc_header"><code>search_dataset</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_dataset</code>(<strong><code>keyword</code></strong>)</p>
 </blockquote>
 <p>Search available dataflows that contain <code>keyword</code>. Return these dataflows in a DataFrame</p>
 
@@ -223,7 +248,7 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Unemployment&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">search_dataset</span><span class="p">(</span><span class="n">keyword</span><span class="o">=</span><span class="s2">&quot;Unemployment&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -372,9 +397,9 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.get_dimensions" class="doc_header"><code>DataSet.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="DataSet.get_dimensions" class="doc_header"><code>DataSet.get_dimensions</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L130" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.get_dimensions</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong><code>description</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Return a Dataframe containing the dimensions and their description descriptions of a specific dataflow.</p>
+<p>Return the dimensions and their descriptions of a specific dataflow.</p>
 
 </div>
 
@@ -400,7 +425,7 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span> <span class="o">=</span> <span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
 <span class="n">dimensions</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_dimensions</span><span class="p">()</span>
 <span class="n">dimensions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -483,9 +508,27 @@ nb_path: "01_discovery.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>we can also ook at the dimensions of a dataflow by simply accessing its attribute <code>dimensions</code>. However, we won't have dimensions' descriptions here.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">dimensions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -493,15 +536,37 @@ nb_path: "01_discovery.ipynb"
 <div class="output_area">
 
 
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.dimension_values" class="doc_header"><code>DataSet.dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L162" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.dimension_values</code>(<strong><code>dimension_ID</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
-</blockquote>
-<p>Return ALL the possible values of a dimension in the dataset</p>
 
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;FREQ&#39;,
+ &#39;CITTADINANZA&#39;,
+ &#39;DURATA_DISOCCUPAZ&#39;,
+ &#39;CLASSE_ETA&#39;,
+ &#39;ITTER107&#39;,
+ &#39;SESSO&#39;,
+ &#39;TIPO_DATO&#39;,
+ &#39;TITOLO_STUDIO&#39;]</pre>
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -522,8 +587,578 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dz</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span> <span class="o">=</span> <span class="s1">&#39;slaughtering&#39;</span><span class="p">)</span>
-<span class="n">dimensions</span> <span class="o">=</span> <span class="n">dz</span><span class="o">.</span><span class="n">get_dimensions</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dimensions = dz.get_dimensions()</span>
+<span class="c1"># dimensions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="DataSet.available_dimensions_values" class="doc_header"><code>DataSet.available_dimensions_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L176" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.available_dimensions_values</code>()</p>
+</blockquote>
+<p>Return a dictionary with available values for each dimension in the dataset</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dz</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
+<span class="n">values_dict</span> <span class="o">=</span> <span class="n">dz</span><span class="o">.</span><span class="n">available_dimensions_values</span><span class="p">()</span>
+
+<span class="c1"># for dimension, available_values in list(values_dict.items())[:3]:</span>
+<span class="c1">#     print(dimension, available_values)</span>
+
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">values_dict</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;CITTADINANZA&#39;: {&#39;values_description&#39;: [&#39;italiano-a&#39;, &#39;straniero-a&#39;, &#39;totale&#39;],
+                  &#39;values_ids&#39;: [&#39;ITL&#39;, &#39;FRG&#39;, &#39;TOTAL&#39;]},
+ &#39;CLASSE_ETA&#39;: {&#39;values_description&#39;: [&#39;18-29 years&#39;,
+                                       &#39;15 years and over&#39;,
+                                       &#39;15-74 years&#39;,
+                                       &#39;55 years and over&#39;,
+                                       &#39;25-34 years&#39;,
+                                       &#39;20-24 years&#39;,
+                                       &#39;15-29 years&#39;,
+                                       &#39;45-54 years&#39;,
+                                       &#39;35-54 years&#39;,
+                                       &#39;35 years and over&#39;,
+                                       &#39;15-64 years&#39;,
+                                       &#39;55-64 years&#39;,
+                                       &#39;15-24 anni&#39;,
+                                       &#39;35-44 anni&#39;],
+                &#39;values_ids&#39;: [&#39;Y18-29&#39;,
+                               &#39;Y_GE15&#39;,
+                               &#39;Y15-74&#39;,
+                               &#39;Y_GE55&#39;,
+                               &#39;Y25-34&#39;,
+                               &#39;Y20-24&#39;,
+                               &#39;Y15-29&#39;,
+                               &#39;Y45-54&#39;,
+                               &#39;Y35-54&#39;,
+                               &#39;Y_GE35&#39;,
+                               &#39;Y15-64&#39;,
+                               &#39;Y55-64&#39;,
+                               &#39;Y15-24&#39;,
+                               &#39;Y35-44&#39;]},
+ &#39;DURATA_DISOCCUPAZ&#39;: {&#39;values_description&#39;: [&#39;total&#39;, &#39;12 mesi e più&#39;],
+                       &#39;values_ids&#39;: [&#39;TOTAL&#39;, &#39;M_GE12&#39;]},
+ &#39;FREQ&#39;: {&#39;values_description&#39;: [&#39;annual&#39;, &#39;quarterly&#39;],
+          &#39;values_ids&#39;: [&#39;A&#39;, &#39;Q&#39;]},
+ &#39;ITTER107&#39;: {&#39;values_description&#39;: [&#39;Italy&#39;,
+                                     &#39;Mezzogiorno&#39;,
+                                     &#39;Molise&#39;,
+                                     &#39;Sud&#39;,
+                                     &#39;Puglia&#39;,
+                                     &#39;Bari&#39;,
+                                     &#39;Lecce&#39;,
+                                     &#39;Barletta-Andria-Trani&#39;,
+                                     &#39;Nord&#39;,
+                                     &#39;Basilicata&#39;,
+                                     &#39;Abruzzo&#39;,
+                                     &#34;L&#39;Aquila&#34;,
+                                     &#39;Campobasso&#39;,
+                                     &#39;Isernia&#39;,
+                                     &#39;Brindisi&#39;,
+                                     &#39;Centro (I)&#39;,
+                                     &#39;Umbria&#39;,
+                                     &#39;Terni&#39;,
+                                     &#39;Marche&#39;,
+                                     &#39;Fermo&#39;,
+                                     &#39;Ancona&#39;,
+                                     &#39;Perugia&#39;,
+                                     &#39;Macerata&#39;,
+                                     &#39;Nord-ovest&#39;,
+                                     &#39;Lombardia&#39;,
+                                     &#39;Pavia&#39;,
+                                     &#39;Lecco&#39;,
+                                     &#39;Piemonte&#39;,
+                                     &#39;Asti&#39;,
+                                     &#39;Brescia&#39;,
+                                     &#39;Milano&#39;,
+                                     &#39;Como&#39;,
+                                     &#39;Varese&#39;,
+                                     &#39;Liguria&#39;,
+                                     &#39;La Spezia&#39;,
+                                     &#39;Genova&#39;,
+                                     &#39;Torino&#39;,
+                                     &#39;Vercelli&#39;,
+                                     &#39;Bergamo&#39;,
+                                     &#39;Novara&#39;,
+                                     &#39;Imperia&#39;,
+                                     &#39;Sondrio&#39;,
+                                     &#39;Cuneo&#39;,
+                                     &#39;Matera&#39;,
+                                     &#39;Nord-est&#39;,
+                                     &#39;Emilia-Romagna&#39;,
+                                     &#39;Modena&#39;,
+                                     &#39;Ravenna&#39;,
+                                     &#39;Piacenza&#39;,
+                                     &#39;Provincia Autonoma Bolzano / Bozen&#39;,
+                                     &#39;Veneto&#39;,
+                                     &#39;Belluno&#39;,
+                                     &#39;Rovigo&#39;,
+                                     &#39;Rimini&#39;,
+                                     &#39;Vicenza&#39;,
+                                     &#39;Treviso&#39;,
+                                     &#39;Forlì-Cesena&#39;,
+                                     &#39;Bologna&#39;,
+                                     &#39;Friuli-Venezia Giulia&#39;,
+                                     &#39;Udine&#39;,
+                                     &#39;Pordenone&#39;,
+                                     &#39;Trieste&#39;,
+                                     &#39;Toscana&#39;,
+                                     &#39;Siena&#39;,
+                                     &#39;Arezzo&#39;,
+                                     &#39;Lucca&#39;,
+                                     &#39;Prato&#39;,
+                                     &#39;Pistoia&#39;,
+                                     &#39;Potenza&#39;,
+                                     &#39;Monza e della Brianza&#39;,
+                                     &#39;Firenze&#39;,
+                                     &#39;Verbano-Cusio-Ossola&#39;,
+                                     &#39;Pescara&#39;,
+                                     &#39;Alessandria&#39;,
+                                     &#39;Venezia&#39;,
+                                     &#39;Pesaro e Urbino&#39;,
+                                     &#39;Massa-Carrara&#39;,
+                                     &#39;Cremona&#39;,
+                                     &#39;Provincia Autonoma Trento&#39;,
+                                     &#39;Grosseto&#39;,
+                                     &#39;Biella&#39;,
+                                     &#39;Sardegna&#39;,
+                                     &#39;Isole&#39;,
+                                     &#39;Ogliastra&#39;,
+                                     &#39;Sud Sardegna&#39;,
+                                     &#39;Oristano&#39;,
+                                     &#39;Sassari&#39;,
+                                     &#39;Olbia-Tempio&#39;,
+                                     &#39;Nuoro&#39;,
+                                     &#39;Medio Campidano&#39;,
+                                     &#39;Cagliari&#39;,
+                                     &#39;Ascoli Piceno&#39;,
+                                     &#39;Parma&#39;,
+                                     &#39;Chieti&#39;,
+                                     &#39;Foggia&#39;,
+                                     &#39;Lazio&#39;,
+                                     &#39;Viterbo&#39;,
+                                     &#39;Latina&#39;,
+                                     &#39;Rieti&#39;,
+                                     &#39;Teramo&#39;,
+                                     &#34;Reggio nell&#39;Emilia&#34;,
+                                     &#34;Valle d&#39;Aosta / Vallée d&#39;Aoste&#34;,
+                                     &#34;Valle d&#39;Aosta / Vallée d&#39;Aoste&#34;,
+                                     &#39;Verona&#39;,
+                                     &#39;Trentino Alto Adige / Südtirol&#39;,
+                                     &#39;Gorizia&#39;,
+                                     &#39;Ferrara&#39;,
+                                     &#39;Padova&#39;,
+                                     &#39;Calabria&#39;,
+                                     &#39;Cosenza&#39;,
+                                     &#39;Reggio di Calabria&#39;,
+                                     &#39;Crotone&#39;,
+                                     &#39;Catanzaro&#39;,
+                                     &#39;Savona&#39;,
+                                     &#39;Frosinone&#39;,
+                                     &#39;Pisa&#39;,
+                                     &#39;Vibo Valentia&#39;,
+                                     &#39;Carbonia-Iglesias&#39;,
+                                     &#39;Lodi&#39;,
+                                     &#39;Mantova&#39;,
+                                     &#39;Livorno&#39;,
+                                     &#39;Sicilia&#39;,
+                                     &#39;Palermo&#39;,
+                                     &#39;Enna&#39;,
+                                     &#39;Agrigento&#39;,
+                                     &#39;Catania&#39;,
+                                     &#39;Messina&#39;,
+                                     &#39;Trapani&#39;,
+                                     &#39;Siracusa&#39;,
+                                     &#39;Ragusa&#39;,
+                                     &#39;Caltanissetta&#39;,
+                                     &#39;Roma&#39;,
+                                     &#39;Taranto&#39;,
+                                     &#39;Campania&#39;,
+                                     &#39;Avellino&#39;,
+                                     &#39;Caserta&#39;,
+                                     &#39;Salerno&#39;,
+                                     &#39;Napoli&#39;,
+                                     &#39;Benevento&#39;],
+              &#39;values_ids&#39;: [&#39;IT&#39;,
+                             &#39;ITFG&#39;,
+                             &#39;ITF2&#39;,
+                             &#39;ITF&#39;,
+                             &#39;ITF4&#39;,
+                             &#39;ITF42&#39;,
+                             &#39;ITF45&#39;,
+                             &#39;IT110&#39;,
+                             &#39;ITCD&#39;,
+                             &#39;ITF5&#39;,
+                             &#39;ITF1&#39;,
+                             &#39;ITF11&#39;,
+                             &#39;ITF22&#39;,
+                             &#39;ITF21&#39;,
+                             &#39;ITF44&#39;,
+                             &#39;ITE&#39;,
+                             &#39;ITE2&#39;,
+                             &#39;ITE22&#39;,
+                             &#39;ITE3&#39;,
+                             &#39;IT109&#39;,
+                             &#39;ITE32&#39;,
+                             &#39;ITE21&#39;,
+                             &#39;ITE33&#39;,
+                             &#39;ITC&#39;,
+                             &#39;ITC4&#39;,
+                             &#39;ITC48&#39;,
+                             &#39;ITC43&#39;,
+                             &#39;ITC1&#39;,
+                             &#39;ITC17&#39;,
+                             &#39;ITC47&#39;,
+                             &#39;ITC45&#39;,
+                             &#39;ITC42&#39;,
+                             &#39;ITC41&#39;,
+                             &#39;ITC3&#39;,
+                             &#39;ITC34&#39;,
+                             &#39;ITC33&#39;,
+                             &#39;ITC11&#39;,
+                             &#39;ITC12&#39;,
+                             &#39;ITC46&#39;,
+                             &#39;ITC15&#39;,
+                             &#39;ITC31&#39;,
+                             &#39;ITC44&#39;,
+                             &#39;ITC16&#39;,
+                             &#39;ITF52&#39;,
+                             &#39;ITD&#39;,
+                             &#39;ITD5&#39;,
+                             &#39;ITD54&#39;,
+                             &#39;ITD57&#39;,
+                             &#39;ITD51&#39;,
+                             &#39;ITD1&#39;,
+                             &#39;ITD3&#39;,
+                             &#39;ITD33&#39;,
+                             &#39;ITD37&#39;,
+                             &#39;ITD59&#39;,
+                             &#39;ITD32&#39;,
+                             &#39;ITD34&#39;,
+                             &#39;ITD58&#39;,
+                             &#39;ITD55&#39;,
+                             &#39;ITD4&#39;,
+                             &#39;ITD42&#39;,
+                             &#39;ITD41&#39;,
+                             &#39;ITD44&#39;,
+                             &#39;ITE1&#39;,
+                             &#39;ITE19&#39;,
+                             &#39;ITE18&#39;,
+                             &#39;ITE12&#39;,
+                             &#39;ITE15&#39;,
+                             &#39;ITE13&#39;,
+                             &#39;ITF51&#39;,
+                             &#39;IT108&#39;,
+                             &#39;ITE14&#39;,
+                             &#39;ITC14&#39;,
+                             &#39;ITF13&#39;,
+                             &#39;ITC18&#39;,
+                             &#39;ITD35&#39;,
+                             &#39;ITE31&#39;,
+                             &#39;ITE11&#39;,
+                             &#39;ITC4A&#39;,
+                             &#39;ITD2&#39;,
+                             &#39;ITE1A&#39;,
+                             &#39;ITC13&#39;,
+                             &#39;ITG2&#39;,
+                             &#39;ITG&#39;,
+                             &#39;ITG2A&#39;,
+                             &#39;IT111&#39;,
+                             &#39;ITG28&#39;,
+                             &#39;ITG25&#39;,
+                             &#39;ITG29&#39;,
+                             &#39;ITG26&#39;,
+                             &#39;ITG2B&#39;,
+                             &#39;ITG27&#39;,
+                             &#39;ITE34&#39;,
+                             &#39;ITD52&#39;,
+                             &#39;ITF14&#39;,
+                             &#39;ITF41&#39;,
+                             &#39;ITE4&#39;,
+                             &#39;ITE41&#39;,
+                             &#39;ITE44&#39;,
+                             &#39;ITE42&#39;,
+                             &#39;ITF12&#39;,
+                             &#39;ITD53&#39;,
+                             &#39;ITC2&#39;,
+                             &#39;ITC20&#39;,
+                             &#39;ITD31&#39;,
+                             &#39;ITDA&#39;,
+                             &#39;ITD43&#39;,
+                             &#39;ITD56&#39;,
+                             &#39;ITD36&#39;,
+                             &#39;ITF6&#39;,
+                             &#39;ITF61&#39;,
+                             &#39;ITF65&#39;,
+                             &#39;ITF62&#39;,
+                             &#39;ITF63&#39;,
+                             &#39;ITC32&#39;,
+                             &#39;ITE45&#39;,
+                             &#39;ITE17&#39;,
+                             &#39;ITF64&#39;,
+                             &#39;ITG2C&#39;,
+                             &#39;ITC49&#39;,
+                             &#39;ITC4B&#39;,
+                             &#39;ITE16&#39;,
+                             &#39;ITG1&#39;,
+                             &#39;ITG12&#39;,
+                             &#39;ITG16&#39;,
+                             &#39;ITG14&#39;,
+                             &#39;ITG17&#39;,
+                             &#39;ITG13&#39;,
+                             &#39;ITG11&#39;,
+                             &#39;ITG19&#39;,
+                             &#39;ITG18&#39;,
+                             &#39;ITG15&#39;,
+                             &#39;ITE43&#39;,
+                             &#39;ITF43&#39;,
+                             &#39;ITF3&#39;,
+                             &#39;ITF34&#39;,
+                             &#39;ITF31&#39;,
+                             &#39;ITF35&#39;,
+                             &#39;ITF33&#39;,
+                             &#39;ITF32&#39;]},
+ &#39;SESSO&#39;: {&#39;values_description&#39;: [&#39;totale&#39;, &#39;femmine&#39;, &#39;maschi&#39;],
+           &#39;values_ids&#39;: [&#39;9&#39;, &#39;2&#39;, &#39;1&#39;]},
+ &#39;TIPO_DATO&#39;: {&#39;values_description&#39;: [&#39;unemployment rate&#39;],
+               &#39;values_ids&#39;: [&#39;UNEM_R&#39;]},
+ &#39;TITOLO_STUDIO&#39;: {&#39;values_description&#39;: [&#39;total&#39;,
+                                          &#39;upper and post secondary&#39;,
+                                          &#39;lower secondary school certificate&#39;,
+                                          &#39;primary school certificate, no &#39;
+                                          &#39;educational degree&#39;,
+                                          &#39;tertiary (university, doctoral and &#39;
+                                          &#39;specialization courses)&#39;],
+                   &#39;values_ids&#39;: [&#39;99&#39;, &#39;7&#39;, &#39;4&#39;, &#39;3&#39;, &#39;11&#39;]}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="DataSet.get_dimension_values" class="doc_header"><code>DataSet.get_dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L215" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.get_dimension_values</code>(<strong><code>dimension</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+</blockquote>
+<p>Return the available values of a single dimension in the dataset</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dz</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
+<span class="n">dz</span><span class="o">.</span><span class="n">get_dimension_values</span><span class="p">(</span><span class="s1">&#39;CLASSE_ETA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>values_ids</th>
+      <th>values_description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Y18-29</td>
+      <td>18-29 years</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Y_GE15</td>
+      <td>15 years and over</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Y15-74</td>
+      <td>15-74 years</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Y_GE55</td>
+      <td>55 years and over</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Y25-34</td>
+      <td>25-34 years</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Full-example">Full example<a class="anchor-link" href="#Full-example"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">identifiers</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;df_id&#39;: &#39;151_914&#39;,
+ &#39;version&#39;: &#39;1.1&#39;,
+ &#39;description&#39;: &#39;Unemployment  rate&#39;,
+ &#39;df_structure_id&#39;: &#39;DCCV_TAXDISOCCU1&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_dimensions</span><span class="p">()</span>
 <span class="n">dimensions</span>
 </pre></div>
 
@@ -570,27 +1205,45 @@ nb_path: "01_discovery.ipynb"
     </tr>
     <tr>
       <th>1</th>
+      <td>CITTADINANZA</td>
+      <td>CL_CITTADINANZA</td>
+      <td>Citizenship</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DURATA_DISOCCUPAZ</td>
+      <td>CL_DURATA</td>
+      <td>Duration</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CLASSE_ETA</td>
+      <td>CL_ETA1</td>
+      <td>Age class</td>
+    </tr>
+    <tr>
+      <th>4</th>
       <td>ITTER107</td>
       <td>CL_ITTER107</td>
       <td>Territory</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>TIPO_MATT</td>
-      <td>CL_ORIG_RIS</td>
-      <td>Resource origin</td>
+      <th>5</th>
+      <td>SESSO</td>
+      <td>CL_SEXISTAT1</td>
+      <td>Gender</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>TIPO_ALLEVAMENTO</td>
-      <td>CL_TIPO_ALLEVAMENTO</td>
-      <td>Type of herd</td>
+      <th>6</th>
+      <td>TIPO_DATO</td>
+      <td>CL_TIPO_DATO_FOL</td>
+      <td>Data type FOL</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>TIP_VAR</td>
-      <td>CL_TIPO_DATO5</td>
-      <td>Data type 5</td>
+      <th>7</th>
+      <td>TITOLO_STUDIO</td>
+      <td>CL_TITOLO_STUDIO</td>
+      <td>Level of education</td>
     </tr>
   </tbody>
 </table>
@@ -612,7 +1265,25 @@ nb_path: "01_discovery.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dz</span><span class="o">.</span><span class="n">dimension_values</span><span class="p">(</span><span class="n">dimension_ID</span> <span class="o">=</span> <span class="s1">&#39;CL_ITTER107&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># len(dimension_value)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">values_dict</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">available_dimensions_values</span><span class="p">()</span>
+<span class="n">values_dict</span><span class="p">[</span><span class="s2">&quot;DURATA_DISOCCUPAZ&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -625,182 +1296,14 @@ nb_path: "01_discovery.ipynb"
 <div class="output_area">
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>value_ID</th>
-      <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>ITNI</td>
-      <td>da precisare</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>IT</td>
-      <td>Italy</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>SLL_2011_116</td>
-      <td>Fossano</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>SLL_393</td>
-      <td>Sessa Aurunca</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>SLL_276</td>
-      <td>Siena</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;values_ids&#39;: [&#39;TOTAL&#39;, &#39;M_GE12&#39;],
+ &#39;values_description&#39;: [&#39;total&#39;, &#39;12 mesi e più&#39;]}</pre>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.available_dimensions_values" class="doc_header"><code>DataSet.available_dimensions_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L188" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.available_dimensions_values</code>()</p>
-</blockquote>
-<p>Return a dictionary with available values for each dimension in the dataset</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dz</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span> <span class="o">=</span> <span class="s1">&#39;slaughtering&#39;</span><span class="p">)</span>
-<span class="n">values_dict</span> <span class="o">=</span> <span class="n">dz</span><span class="o">.</span><span class="n">available_dimensions_values</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">available_values</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">values_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span> <span class="n">available_values</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>FREQ [&#39;A&#39;, &#39;M&#39;]
-ITTER107 [&#39;IT&#39;, &#39;ITC1&#39;, &#39;ITC2&#39;, &#39;ITC3&#39;, &#39;ITC4&#39;, &#39;ITCD&#39;, &#39;ITD10&#39;, &#39;ITD20&#39;, &#39;ITD3&#39;, &#39;ITD4&#39;, &#39;ITD5&#39;, &#39;ITDA&#39;, &#39;ITE&#39;, &#39;ITE1&#39;, &#39;ITE2&#39;, &#39;ITE3&#39;, &#39;ITE4&#39;, &#39;ITF1&#39;, &#39;ITF2&#39;, &#39;ITF3&#39;, &#39;ITF4&#39;, &#39;ITF5&#39;, &#39;ITF6&#39;, &#39;ITFG&#39;, &#39;ITG1&#39;, &#39;ITG2&#39;]
-TIPO_MATT [&#39;ALL&#39;, &#39;PRIV&#39;, &#39;PUB&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Full-example">Full example<a class="anchor-link" href="#Full-example"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span> <span class="o">=</span> <span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">identifiers</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_dimensions</span><span class="p">()</span>
-<span class="n">dimensions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dimension_value</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dimension_values</span><span class="p">(</span><span class="n">dimension_ID</span> <span class="o">=</span> <span class="s2">&quot;CL_ITTER107&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 

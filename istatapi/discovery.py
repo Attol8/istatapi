@@ -7,7 +7,6 @@ from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
 import pprint
-from tqdm import tqdm
 
 # Cell
 def parse_dataflows(response):
