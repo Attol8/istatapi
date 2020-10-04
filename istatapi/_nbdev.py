@@ -10,7 +10,6 @@ index = {"ISTAT": "00_base.ipynb",
          "make_tree": "02_utils.ipynb",
          "strip_ns": "02_utils.ipynb",
          "get_data": "03_retrieval.ipynb",
-         "set_filters": "03_retrieval.ipynb",
          "make_url_key": "03_retrieval.ipynb",
          "RESOURCE": "03_retrieval.ipynb"}
 

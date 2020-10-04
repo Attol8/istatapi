@@ -7,6 +7,7 @@ from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
 import pprint
+from fastcore.test import *
 
 # Cell
 def parse_dataflows(response):
@@ -32,7 +33,7 @@ def parse_dataflows(response):
         dataflow_dict = {
             "df_id": id,
             "version": version,
-            "description": description_en,
+            "df_description": description_en,
             # "description_it": description_it,
             "df_structure_id": structure_id,
         }
@@ -58,8 +59,10 @@ def all_available(dataframe=True):
 def search_dataset(keyword):
     """Search available dataflows that contain `keyword`. Return these dataflows in a DataFrame"""
     dataflows = all_available()[
-        all_available()["description"].str.contains(keyword, case=False)
+        all_available()["df_description"].str.contains(keyword, case=False)
     ]
+
+    if len(dataflows) == 0: raise ValueError('No dataset matching `keyword`')
 
     return dataflows
 
@@ -72,15 +75,15 @@ class DataSet(ISTAT):
         self.resource = "datastructure"
         self.all_available = all_available()  # df with all the available dataflows
         self.identifiers = self.set_identifiers(dataflow_identifier)
-        self.dimensions = self.get_dimensions(description=False).dimension.tolist()
-        self.values = self.available_dimensions_values()
+        self.available_values = self.get_available_values()
+        self.dimensions = list(self.dimensions_info(description=False).dimension)
         self.filters = self.default_filters()
         # self.dimensions_values = self.available_dimensions_values()
 
         # TODO: returning all metadata related to the dataflow contained in 'Header'
 
     def set_identifiers(self, dataflow_identifier):
-        """"""
+        """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
         if dataflow_identifier[3] == "_":
             return self.set_from_id(dataflow_identifier)
         elif dataflow_identifier[4] == "_":
@@ -102,7 +105,7 @@ class DataSet(ISTAT):
         return df.to_dict(orient="records")[0]
 
     def set_from_description(self, description):
-        mask = self.all_available["description"] == description
+        mask = self.all_available["df_description"] == description
         df = self.all_available[mask]
         return df.to_dict(orient="records")[0]
 
@@ -127,8 +130,8 @@ class DataSet(ISTAT):
 
         return dimensions_l
 
-    def get_dimensions(self, dataframe=True, description=True):
-        """Return the dimensions and their descriptions of a specific dataflow."""
+    def dimensions_info(self, dataframe=True, description=True):
+        """Return the dimensions of a specific dataflow and their `descriptions`."""
         df_structure_id = self.identifiers["df_structure_id"]
 
         path_parts = [self.resource, self.agencyID, df_structure_id]
@@ -173,8 +176,8 @@ class DataSet(ISTAT):
 
         return dimensions_descriptions
 
-    def available_dimensions_values(self):
-        """Return a dictionary with available values for each dimension in the dataset"""
+    def get_available_values(self):
+        """Return a dictionary with available values for each dimension in the DataSet instance"""
         resource = "availableconstraint"
         df_id = self.identifiers["df_id"]
         path_parts = [
@@ -213,62 +216,28 @@ class DataSet(ISTAT):
         return dimensions_values
 
     def get_dimension_values(self, dimension, dataframe=True):
-        """Return the available values of a single dimension in the dataset"""
-        dimension_dict = self.values[dimension]
+        """Return the available values of a single `dimension` in the dataset"""
+        dimension_dict = self.available_values[dimension]
         dimension_df = pd.DataFrame.from_dict(dimension_dict)
         return dimension_df if dataframe else dimension_dict
 
-    def get_dimension_id(self, dimension):
-        """Convert `dimension` to `dimension_id`"""
-        dimensions_df = self.dataset.get_dimensions(description=False)
-        mask = dimensions_df["dimension"] == dimension
-        dimension_ID = dimensions_df[mask]["dimension_ID"]
-        return dimension_ID.values[0]
-
     def get_dimension_name(self, dimension_id):
         """Convert `dimension_id` to `dimension`"""
-        dimensions_df = self.get_dimensions(description=False)
+        dimensions_df = self.dimensions_info(description=False)
         mask = dimensions_df["dimension_ID"] == dimension_id
         dimension = dimensions_df[mask]["dimension"]
         return dimension.values[0]
 
-    def dimension_values_all(self, dimension, dataframe=True):
-        """Return ALL the possible values of a dimension in the dataset"""
-        # TODO: convert dimension_ID to dimension name to be consistent. Remove? not really useful
-        resource = "codelist"
-        agencyID = "IT1"
-        dimension_ID = self.get_dimension_id(dimension)
-        path_parts = [resource, self.agencyID, dimension_ID]
-        path = "/".join(path_parts)
-        response = self._request(path=path)
-        tree = make_tree(response)
-        strip_ns(tree)
-        root = tree.root
-
-        values = []
-        for value in root.iter("Code"):
-            value_id = value.get("id")
-            # value_it = value.findall('Name')[0].text
-            value = value.findall("Name")[1].text
-
-            value_dict = {"value_ID": value_id, "description": value}
-
-            values.append(value_dict)
-
-        if dataframe == True:
-            values = pd.DataFrame(values)
-
-        return values
-
     def default_filters(self):
-        default_filters = {}  # initiate filter with empty dict
+        """"initiate self.filters with default values"""
+        default_filters = {}
         # no filter equals all values (default)
         for dimension in self.dimensions:
             default_filters[dimension] = "."
         return default_filters
 
     def set_filters(self, **kwargs):
-        """"""
+        """set filters for the dimensions of the dataset by passing dimension_name=value"""
         # add kwargs in case passed
         for arg, arg_value in kwargs.items():
             self.filters[arg.upper()] = arg_value

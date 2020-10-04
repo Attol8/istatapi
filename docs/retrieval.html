@@ -53,7 +53,7 @@ nb_path: "03_retrieval.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_data" class="doc_header"><code>get_data</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/retrieval.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_data</code>(<strong><code>dataset</code></strong>:<a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="make_url_key" class="doc_header"><code>make_url_key</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/retrieval.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_url_key</code>(<strong><code>filters</code></strong>:<code>dict</code>)</p>
 </blockquote>
 
 </div>
@@ -77,32 +77,9 @@ nb_path: "03_retrieval.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="set_filters" class="doc_header"><code>set_filters</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/retrieval.py#L38" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>set_filters</code>(<strong><code>dataset</code></strong>:<a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="get_data" class="doc_header"><code>get_data</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/retrieval.py#L17" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_data</code>(<strong><code>dataset</code></strong>:<a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="make_url_key" class="doc_header"><code>make_url_key</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/retrieval.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_url_key</code>(<strong><code>filters</code></strong>:<code>dict</code>)</p>
-</blockquote>
+<p>returns a dataframe of the filitered 'dataset'</p>
 
 </div>
 
@@ -121,27 +98,20 @@ nb_path: "03_retrieval.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span>
-<span class="n">cittadinanza</span> <span class="o">=</span> <span class="s2">&quot;TOTAL&quot;</span>
-<span class="n">durata_disoccupaz</span> <span class="o">=</span> <span class="s2">&quot;TOTAL&quot;</span>
-<span class="n">classe_eta</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Y15-24&quot;</span><span class="p">,</span> <span class="s2">&quot;Y25-34&quot;</span><span class="p">,</span> <span class="s2">&quot;Y35-44&quot;</span><span class="p">,</span> <span class="s2">&quot;Y45-54&quot;</span><span class="p">,</span> <span class="s2">&quot;Y55-64&quot;</span><span class="p">]</span>
-<span class="n">itter107</span> <span class="o">=</span> <span class="s2">&quot;IT&quot;</span>
-<span class="n">sesso</span> <span class="o">=</span> <span class="s2">&quot;9&quot;</span>
-<span class="n">titolo_studio</span> <span class="o">=</span> <span class="s2">&quot;99&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;139_176&quot;</span><span class="p">)</span>
 
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">dataflow_identifier</span><span class="o">=</span><span class="s2">&quot;151_914&quot;</span><span class="p">)</span>
-<span class="n">filters</span> <span class="o">=</span> <span class="n">set_filters</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="p">,</span>
-    <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span>
-    <span class="n">cittadinanza</span><span class="o">=</span><span class="n">cittadinanza</span><span class="p">,</span>
-    <span class="n">durata_disoccupaz</span><span class="o">=</span><span class="n">durata_disoccupaz</span><span class="p">,</span>
-    <span class="n">classe_eta</span><span class="o">=</span><span class="n">classe_eta</span><span class="p">,</span>
-    <span class="n">itter107</span><span class="o">=</span><span class="n">itter107</span><span class="p">,</span>
-    <span class="n">sesso</span><span class="o">=</span><span class="n">sesso</span><span class="p">,</span>
-    <span class="n">titolo_studio</span><span class="o">=</span><span class="n">titolo_studio</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">unempl_df</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">)</span>
-<span class="n">unempl_df</span><span class="o">.</span><span class="n">columns</span>
+<span class="c1">#define some filters</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span>
+<span class="n">tipo_dato</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ISAV&quot;</span><span class="p">,</span> <span class="s2">&quot;ESAV&quot;</span><span class="p">]</span>
+<span class="n">paese_partner</span><span class="o">=</span><span class="s2">&quot;WORLD&quot;</span>
+
+<span class="c1">#set filters</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">set_filters</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tipo_dato</span><span class="o">=</span><span class="n">tipo_dato</span><span class="p">,</span> <span class="n">paese_partner</span><span class="o">=</span><span class="n">paese_partner</span><span class="p">)</span>
+<span class="c1">#return dataset</span>
+<span class="n">unempl_df</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">unempl_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">unempl_df</span><span class="p">[</span><span class="s1">&#39;FREQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">])</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">unempl_df</span><span class="p">[</span><span class="s1">&#39;TIPO_DATO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;ISAV&quot;</span><span class="p">,</span> <span class="s2">&quot;ESAV&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -154,24 +124,9 @@ nb_path: "03_retrieval.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-http://sdmx.istat.it/SDMXWS/rest/data/151_914/
+<pre>{&#39;FREQ&#39;: &#39;M&#39;, &#39;MERCE_ATECO_2007&#39;: &#39;.&#39;, &#39;PAESE_PARTNER&#39;: &#39;WORLD&#39;, &#39;ITTER107&#39;: &#39;.&#39;, &#39;TIPO_DATO&#39;: [&#39;ISAV&#39;, &#39;ESAV&#39;]}
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;DATAFLOW&#39;, &#39;FREQ&#39;, &#39;CITTADINANZA&#39;, &#39;DURATA_DISOCCUPAZ&#39;, &#39;CLASSE_ETA&#39;,
-       &#39;ITTER107&#39;, &#39;SESSO&#39;, &#39;TIPO_DATO&#39;, &#39;TITOLO_STUDIO&#39;, &#39;TIME_PERIOD&#39;,
-       &#39;OBS_VALUE&#39;, &#39;BREAK&#39;, &#39;CONF_STATUS&#39;, &#39;OBS_PRE_BREAK&#39;, &#39;OBS_STATUS&#39;,
-       &#39;BASE_PER&#39;, &#39;UNIT_MEAS&#39;, &#39;UNIT_MULT&#39;, &#39;METADATA_EN&#39;, &#39;METADATA_IT&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
 </div>
 
 </div>
