@@ -68,7 +68,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="parse_dataflows" class="doc_header"><code>parse_dataflows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>parse_dataflows</code>(<strong><code>response</code></strong>)</p>
+<h4 id="parse_dataflows" class="doc_header"><code>parse_dataflows</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>parse_dataflows</code>(<strong><code>response</code></strong>)</p>
 </blockquote>
 <p>parse the <code>response</code> containing all the available datasets and return a list of dataflows.</p>
 
@@ -100,7 +100,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="all_available" class="doc_header"><code>all_available</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>all_available</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="all_available" class="doc_header"><code>all_available</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>all_available</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Return all available dataflows</p>
 
@@ -145,7 +145,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="search_dataset" class="doc_header"><code>search_dataset</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_dataset</code>(<strong><code>keyword</code></strong>)</p>
+<h4 id="search_dataset" class="doc_header"><code>search_dataset</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_dataset</code>(<strong><code>keyword</code></strong>)</p>
 </blockquote>
 <p>Search available dataflows that contain <code>keyword</code>. Return these dataflows in a DataFrame</p>
 
@@ -222,7 +222,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataSet" class="doc_header"><code>class</code> <code>DataSet</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L70" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataSet</code>(<strong><code>dataflow_identifier</code></strong>) :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h2 id="DataSet" class="doc_header"><code>class</code> <code>DataSet</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L69" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataSet</code>(<strong><code>dataflow_identifier</code></strong>) :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
 </blockquote>
 <p>Class that implements methods to retrieve informations (metadata) about a Dataset</p>
 
@@ -281,7 +281,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.dimensions_info" class="doc_header"><code>DataSet.dimensions_info</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L133" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.dimensions_info</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong><code>description</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="DataSet.dimensions_info" class="doc_header"><code>DataSet.dimensions_info</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L132" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.dimensions_info</code>(<strong><code>dataframe</code></strong>=<em><code>True</code></em>, <strong><code>description</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Return the dimensions of a specific dataflow and their <code>descriptions</code>.</p>
 
@@ -449,7 +449,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.get_dimension_values" class="doc_header"><code>DataSet.get_dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L218" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.get_dimension_values</code>(<strong><code>dimension</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="DataSet.get_dimension_values" class="doc_header"><code>DataSet.get_dimension_values</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L217" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.get_dimension_values</code>(<strong><code>dimension</code></strong>, <strong><code>dataframe</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Return the available values of a single <code>dimension</code> in the dataset</p>
 
@@ -541,7 +541,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="DataSet.set_filters" class="doc_header"><code>DataSet.set_filters</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L239" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.set_filters</code>(<strong>**<code>kwargs</code></strong>)</p>
+<h4 id="DataSet.set_filters" class="doc_header"><code>DataSet.set_filters</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>DataSet.set_filters</code>(<strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>set filters for the dimensions of the dataset by passing dimension_name=value</p>
 
