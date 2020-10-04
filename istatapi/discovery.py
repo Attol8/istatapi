@@ -6,7 +6,6 @@ __all__ = ['parse_dataflows', 'all_available', 'search_dataset', 'DataSet']
 from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
-import pprint
 from fastcore.test import *
 
 # Cell
