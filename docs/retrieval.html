@@ -5,8 +5,8 @@ title: Retrieval
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Functions used to retrieve data from ISTAT datasets."
-description: "Functions used to retrieve data from ISTAT datasets."
+summary: "Functions and Classes used to retrieve data from ISTAT datasets."
+description: "Functions and Classes used to retrieve data from ISTAT datasets."
 nb_path: "03_retrieval.ipynb"
 ---
 <!--
@@ -108,27 +108,14 @@ nb_path: "03_retrieval.ipynb"
 <span class="c1">#set filters</span>
 <span class="n">dataset</span><span class="o">.</span><span class="n">set_filters</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tipo_dato</span><span class="o">=</span><span class="n">tipo_dato</span><span class="p">,</span> <span class="n">paese_partner</span><span class="o">=</span><span class="n">paese_partner</span><span class="p">)</span>
 <span class="c1">#return dataset</span>
-<span class="n">unempl_df</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="n">unempl_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="n">test_eq</span><span class="p">(</span><span class="n">unempl_df</span><span class="p">[</span><span class="s1">&#39;FREQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">])</span>
-<span class="n">test_eq</span><span class="p">(</span><span class="n">unempl_df</span><span class="p">[</span><span class="s1">&#39;TIPO_DATO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;ISAV&quot;</span><span class="p">,</span> <span class="s2">&quot;ESAV&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">())</span>
+<span class="n">trade_df</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">trade_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">trade_df</span><span class="p">[</span><span class="s1">&#39;FREQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">])</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">trade_df</span><span class="p">[</span><span class="s1">&#39;TIPO_DATO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;ISAV&quot;</span><span class="p">,</span> <span class="s2">&quot;ESAV&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">())</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">trade_df</span><span class="p">[</span><span class="s1">&#39;PAESE_PARTNER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;WORLD&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">())</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;FREQ&#39;: &#39;M&#39;, &#39;MERCE_ATECO_2007&#39;: &#39;.&#39;, &#39;PAESE_PARTNER&#39;: &#39;WORLD&#39;, &#39;ITTER107&#39;: &#39;.&#39;, &#39;TIPO_DATO&#39;: [&#39;ISAV&#39;, &#39;ESAV&#39;]}
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 

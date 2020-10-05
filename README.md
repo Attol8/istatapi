@@ -13,6 +13,8 @@ Whether you are an existing organization, a curious individual or an academic re
 
 ## Install
 
+You can easily install the library by using the pip command:
+
 `pip install istatapi`
 
 ## How to use
