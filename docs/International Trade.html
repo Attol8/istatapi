@@ -2,6 +2,7 @@
 
 title: International Trade
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -73,28 +74,6 @@ nb_path: "_examples\International Trade.ipynb"
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-2c99dcf7f048&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-green-intense-fg ansi-bold">from</span> nbdev <span class="ansi-green-intense-fg ansi-bold">import</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">from</span> istatapi <span class="ansi-green-intense-fg ansi-bold">import</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span>
-<span class="ansi-green-fg">      3</span> <span class="ansi-green-intense-fg ansi-bold">import</span> matplotlib<span class="ansi-yellow-intense-fg ansi-bold">.</span>pyplot <span class="ansi-green-intense-fg ansi-bold">as</span> plt
-<span class="ansi-green-fg">      4</span> <span class="ansi-green-intense-fg ansi-bold">import</span> pandas <span class="ansi-green-intense-fg ansi-bold">as</span> pd
-
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>: No module named &#39;istatapi&#39;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -190,7 +169,7 @@ nb_path: "_examples\International Trade.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To retrieve data from a specific dataset, we first need to create an instance of the <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a> class. We can use <code>df_id</code>, <code>df_description</code> or <code>df_structure_id</code> from the above DataFrame. This may take a few seconds to load.</p>
+<p>To retrieve data from a specific dataset, we first need to create an instance of the <a href="/istatapi/discovery.html#DataSet"><code>DataSet</code></a> class. We can use <code>df_id</code>, <code>df_description</code> or <code>df_structure_id</code> from the above DataFrame. This may take a few seconds to load.</p>
 
 </div>
 </div>
@@ -433,7 +412,7 @@ nb_path: "_examples\International Trade.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Having set our filters, we can now finally retrieve the data by simply passing our <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a> instance to the function <a href="/istatapi/retrieval#get_data"><code>get_data</code></a>. It will return a pandas DataFrame with all the data that we requested. The data will be already sorted by datetime</p>
+<p>Having set our filters, we can now finally retrieve the data by simply passing our <a href="/istatapi/discovery.html#DataSet"><code>DataSet</code></a> instance to the function <a href="/istatapi/retrieval.html#get_data"><code>get_data</code></a>. It will return a pandas DataFrame with all the data that we requested. The data will be already sorted by datetime</p>
 
 </div>
 </div>

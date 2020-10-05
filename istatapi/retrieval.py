@@ -8,6 +8,7 @@ from .base import ISTAT
 import pandas as pd
 import io
 from fastcore.test import *
+from nbdev import *
 
 # Cell
 RESOURCE = "data"

@@ -2,6 +2,7 @@
 
 title: Discovery
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -31,6 +32,23 @@ nb_path: "01_discovery.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -38,7 +56,7 @@ nb_path: "01_discovery.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This module implements functions to discover the data exposed by ISTAT. To do so, <code>istatapi</code> make metadata requests to the API endpoints. The <code>Discovery</code> module provides useful methods to parse and analyze API metadata responses. It makes use of the library <code>pandas</code> and returns data in the <code>DataFrame</code> format, making it convenient for interactive and exploratory analysis in Jupyter Notebooks.</p>
-<p>The main class implemented in the <code>Discovery</code> module is <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a>.</p>
+<p>The main class implemented in the <code>Discovery</code> module is <a href="/istatapi/discovery.html#DataSet"><code>DataSet</code></a>.</p>
 
 </div>
 </div>
@@ -50,13 +68,6 @@ nb_path: "01_discovery.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -78,6 +89,13 @@ nb_path: "01_discovery.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -193,7 +211,7 @@ nb_path: "01_discovery.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The API provides a lot of information on its datasets. The <a href="/istatapi/discovery#DataSet"><code>DataSet</code></a> class implements methods to retrieve this info. The followings are the main functionalities implemented by the class:</p>
+<p>The API provides a lot of information on its datasets. The <a href="/istatapi/discovery.html#DataSet"><code>DataSet</code></a> class implements methods to retrieve this info. The followings are the main functionalities implemented by the class:</p>
 <ol>
 <li>Find The ID of the <code>dataflow</code> (dataset) containing the data that needs to be returned</li>
 <li>Display The of the <code>dataflow</code> we want to query. Dimension is another name for a column or a variable.</li>
@@ -208,13 +226,6 @@ nb_path: "01_discovery.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -222,7 +233,7 @@ nb_path: "01_discovery.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataSet" class="doc_header"><code>class</code> <code>DataSet</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L69" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataSet</code>(<strong><code>dataflow_identifier</code></strong>) :: <a href="/istatapi/base#ISTAT"><code>ISTAT</code></a></p>
+<h2 id="DataSet" class="doc_header"><code>class</code> <code>DataSet</code><a href="https://github.com/Attol8/istatapi/tree/master/istatapi/discovery.py#L69" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataSet</code>(<strong><code>dataflow_identifier</code></strong>) :: <a href="/istatapi/base.html#ISTAT"><code>ISTAT</code></a></p>
 </blockquote>
 <p>Class that implements methods to retrieve informations (metadata) about a Dataset</p>
 
@@ -232,6 +243,13 @@ nb_path: "01_discovery.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -557,8 +575,8 @@ nb_path: "01_discovery.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With <a href="/istatapi/discovery#DataSet.set_filters("><code>DataSet.set_filters()</code></a>) we can filter the dimensions of the dataset by passing the values that we want to filter for. The dataset will then only return data containing our filters. A dictionary with the selected filters is contained in the attribute <a href="/istatapi/discovery#DataSet.filters"><code>DataSet.filters</code></a>.</p>
-<p><strong>Note</strong> that the arguments of <a href="/istatapi/discovery#DataSet.set_filters"><code>DataSet.set_filters</code></a> are lower case letters, but in <a href="/istatapi/discovery#DataSet.filters"><code>DataSet.filters</code></a> they are converted to upper case to be consistent with dimension names on ISTAT API.</p>
+<p>With <a href="/istatapi/discovery.html#DataSet.set_filters("><code>DataSet.set_filters()</code></a>) we can filter the dimensions of the dataset by passing the values that we want to filter for. The dataset will then only return data containing our filters. A dictionary with the selected filters is contained in the attribute <a href="/istatapi/discovery.html#DataSet.filters"><code>DataSet.filters</code></a>.</p>
+<p><strong>Note</strong> that the arguments of <a href="/istatapi/discovery.html#DataSet.set_filters"><code>DataSet.set_filters</code></a> are lower case letters, but in <a href="/istatapi/discovery.html#DataSet.filters"><code>DataSet.filters</code></a> they are converted to upper case to be consistent with dimension names on ISTAT API.</p>
 
 </div>
 </div>
