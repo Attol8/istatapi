@@ -1,9 +1,0 @@
-{
-  "istatapi": {
-    "Overview": "/",
-    "Base": "base.html",
-    "Discovery": "discovery.html",
-    "Utils": "utils.html",
-    "Retrieval": "retrieval.html"
-  }
-}
