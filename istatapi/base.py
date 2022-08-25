@@ -6,6 +6,7 @@ __all__ = ['ISTAT']
 # %% ../nbs/00_base.ipynb 2
 import requests
 from nbdev.showdoc import *
+from importlib import reload
 
 # %% ../nbs/00_base.ipynb 3
 class ISTAT:

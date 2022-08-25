@@ -66,7 +66,7 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb 15
+# %% ../nbs/01_discovery.ipynb 17
 class DataSet(ISTAT):
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
 
