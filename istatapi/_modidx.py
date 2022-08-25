@@ -2,7 +2,7 @@
 
 d = { 'settings': { 'branch': 'master',
                 'doc_baseurl': '/',
-                'doc_host': 'https://Attol8.github.io/',
+                'doc_host': 'https://Attol8.github.io',
                 'git_url': 'https://github.com/Attol8/istatapi',
                 'lib_path': 'istatapi'},
   'syms': { 'istatapi.base': { 'istatapi.base.ISTAT': ( 'https://Attol8.github.io/base.html#istat',
