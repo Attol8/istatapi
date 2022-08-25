@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['make_tree', 'strip_ns']
 
-# %% ../nbs/02_utils.ipynb 2
+# %% ../nbs/02_utils.ipynb 1
 import xml.etree.ElementTree as ET
 from io import StringIO
 

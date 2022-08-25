@@ -9,9 +9,8 @@ from .base import ISTAT
 import pandas as pd
 import io
 from fastcore.test import *
-from nbdev import *
 
-# %% ../nbs/03_retrieval.ipynb 3
+# %% ../nbs/03_retrieval.ipynb 4
 RESOURCE = "data"
 # TODO: accept json response as well (?)
 

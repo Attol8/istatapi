@@ -3,13 +3,13 @@
 # %% auto 0
 __all__ = ['parse_dataflows', 'all_available', 'search_dataset', 'DataSet']
 
-# %% ../nbs/01_discovery.ipynb 3
+# %% ../nbs/01_discovery.ipynb 1
 from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
 from fastcore.test import *
 
-# %% ../nbs/01_discovery.ipynb 7
+# %% ../nbs/01_discovery.ipynb 6
 def parse_dataflows(response):
     """parse the `response` containing all the available datasets and return a list of dataflows."""
     tree = make_tree(response)
@@ -66,7 +66,7 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb 16
+# %% ../nbs/01_discovery.ipynb 15
 class DataSet(ISTAT):
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
 
