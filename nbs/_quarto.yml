@@ -22,14 +22,14 @@ website:
   open-graph: true
   reader-mode: true
   repo-branch: master
-  repo-url: "https://github.com/Attol8/istatapi/tree/master/"
+  repo-url: "https://github.com/Attol8/istatapi"
   repo-actions: [issue]
   navbar:
     background: primary
     search: true
     right:
       - icon: github
-        href: "https://github.com/Attol8/istatapi/tree/master/"
+        href: "https://github.com/Attol8/istatapi"
   sidebar:
     style: "floating"
 
