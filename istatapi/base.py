@@ -3,12 +3,12 @@
 # %% auto 0
 __all__ = ['ISTAT']
 
-# %% ../nbs/00_base.ipynb 7
+# %% ../nbs/00_base.ipynb 2
 import requests
-from nbdev.showdoc import *
+from nbdev.showdoc import show_doc
 from importlib import reload
 
-# %% ../nbs/00_base.ipynb 9
+# %% ../nbs/00_base.ipynb 3
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
 
@@ -27,7 +27,7 @@ class ISTAT:
 
         return response
 
-# %% ../nbs/00_base.ipynb 11
+# %% ../nbs/00_base.ipynb 4
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
 
