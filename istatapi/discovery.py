@@ -10,6 +10,12 @@ import pandas as pd
 from fastcore.test import *
 
 # %% ../nbs/01_discovery.ipynb 6
+from .base import ISTAT
+from .utils import make_tree, strip_ns
+import pandas as pd
+from fastcore.test import *
+
+# %% ../nbs/01_discovery.ipynb 11
 def parse_dataflows(response):
     """parse the `response` containing all the available datasets and return a list of dataflows."""
     tree = make_tree(response)
@@ -66,7 +72,7 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb 18
+# %% ../nbs/01_discovery.ipynb 23
 class DataSet(ISTAT):
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
 
