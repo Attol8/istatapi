@@ -16,7 +16,7 @@ format:
 
 website:
   title: "istatapi"
-  site-url: "https://Attol8.github.io/istatapi/"
+  site-url: "https://Attol8.github.io/istatapi"
   description: "Python API for ISTAT (The Italian National Institute of Statistics)"
   twitter-card: true
   open-graph: true

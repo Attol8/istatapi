@@ -10,7 +10,7 @@ import pandas as pd
 import io
 from fastcore.test import *
 
-# %% ../nbs/03_retrieval.ipynb 4
+# %% ../nbs/03_retrieval.ipynb 3
 RESOURCE = "data"
 # TODO: accept json response as well (?)
 
