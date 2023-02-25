@@ -9,6 +9,7 @@ from .base import ISTAT
 import pandas as pd
 import io
 from fastcore.test import *
+from nbdev import *
 
 # %% ../nbs/03_retrieval.ipynb 3
 RESOURCE = "data"
