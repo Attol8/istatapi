@@ -14,13 +14,13 @@ academic researcher, `istatapi` aims to allow you to easily access ISTAT
 databases with just a few lines of code. The library implements
 functions to:
 
--   Explore all available ISTAT datasets (dataflows in SDMX terminology)
--   Search available datasets by keywords
--   Retrieve information on a specific dataset like: the ID of the
-    dataflow, the names and available values of the dimensions of the
-    dataset, available filters.
--   Get data of an available dataset in a pandas DataFrame, csv or json
-    format.
+- Explore all available ISTAT datasets (dataflows in SDMX terminology)
+- Search available datasets by keywords
+- Retrieve information on a specific dataset like: the ID of the
+  dataflow, the names and available values of the dimensions of the
+  dataset, available filters.
+- Get data of an available dataset in a pandas DataFrame, csv or json
+  format.
 
 ## Install
 
@@ -29,3 +29,8 @@ You can easily install the library by using the pip command:
 `pip install istatapi`
 
 ## How to use
+
+With `istatapi` we can search through all the available datasets by
+simply using the following function:
+
+`all_available()`
