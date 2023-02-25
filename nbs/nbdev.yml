@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "istatapi"
+  site-url: "https://Attol8.github.io/istatapi"
+  description: "Python API for ISTAT (The Italian National Institute of Statistics)"
+  repo-branch: master
+  repo-url: "https://github.com/Attol8/istatapi"

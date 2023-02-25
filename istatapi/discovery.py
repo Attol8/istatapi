@@ -9,13 +9,7 @@ from .utils import make_tree, strip_ns
 import pandas as pd
 from fastcore.test import *
 
-# %% ../nbs/01_discovery.ipynb 4
-from .base import ISTAT
-from .utils import make_tree, strip_ns
-import pandas as pd
-from fastcore.test import *
-
-# %% ../nbs/01_discovery.ipynb 7
+# %% ../nbs/01_discovery.ipynb 5
 def parse_dataflows(response):
     """parse the `response` containing all the available datasets and return a list of dataflows."""
     tree = make_tree(response)
@@ -72,7 +66,10 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb 18
+# %% ../nbs/01_discovery.ipynb 16
+# TODO: Make it into a dataclass
+# TODO: Add datasets description attribute
+
 class DataSet(ISTAT):
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
 
@@ -86,11 +83,10 @@ class DataSet(ISTAT):
         self.filters = self.default_filters()
         # self.dimensions_values = self.available_dimensions_values()
         
-        # TODO: returning all metadata related to the dataflow contained in 'Header'
 
     def set_identifiers(self, dataflow_identifier):
         """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
-        if dataflow_identifier[3] == "_":
+        if dataflow_identifier[1] == "_" or dataflow_identifier[2] == "_" or dataflow_identifier[3] == "_":
             return self.set_from_id(dataflow_identifier)
         elif dataflow_identifier[4] == "_":
             return self.set_from_structure_id(dataflow_identifier)
