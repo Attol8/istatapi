@@ -21,25 +21,6 @@ class ISTAT:
         url = "/".join([self.base_url, path])
 
         if "headers" in kwargs.keys():
-            response = requests.get(url, headers=kwargs["headers"])
-        else:
-            response = requests.get(url)
-
-        return response
-
-# %% ../nbs/00_base.ipynb 4
-class ISTAT:
-    """Base class that provides useful functions to communicate with ISTAT API"""
-
-    def __init__(self):
-        self.base_url = "http://sdmx.istat.it/SDMXWS/rest"
-        self.agencyID = "IT1"
-
-    def _request(self, path, **kwargs):
-        """Make a request to ISTAT API given a 'path'"""
-        url = "/".join([self.base_url, path])
-
-        if "headers" in kwargs.keys():
             response = requests.get(url, headers=kwargs["headers"], verify=False)
         else:
             response = requests.get(url, verify=False)
