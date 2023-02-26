@@ -8,7 +8,7 @@ import requests
 from nbdev.showdoc import show_doc
 from importlib import reload
 
-# %% ../nbs/00_base.ipynb 2
+# %% ../nbs/00_base.ipynb 3
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
 
@@ -27,7 +27,7 @@ class ISTAT:
 
         return response
 
-# %% ../nbs/00_base.ipynb 3
+# %% ../nbs/00_base.ipynb 4
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
 
@@ -40,8 +40,8 @@ class ISTAT:
         url = "/".join([self.base_url, path])
 
         if "headers" in kwargs.keys():
-            response = requests.get(url, headers=kwargs["headers"])
+            response = requests.get(url, headers=kwargs["headers"], verify=False)
         else:
-            response = requests.get(url)
+            response = requests.get(url, verify=False)
 
         return response
