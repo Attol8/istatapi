@@ -47,33 +47,54 @@ discovery.all_available()
     /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
       warnings.warn(
 
-            df_id version                                     df_description  \
-    0    101_1015     1.3                                              Crops   
-    1    101_1030     1.0                  PDO, PGI and TSG quality products   
-    2    101_1033     1.0                                       slaughtering   
-    3    101_1039     1.2                       Agritourism - municipalities   
-    4    101_1077     1.0  PDO, PGI and TSG products:  operators - munici...   
-    ..        ...     ...                                                ...   
-    504    97_953     1.1               Environmental protection expenditure   
-    505   98_1066     1.0  Productivity measures - Accounts in the 2014 v...   
-    506   98_1067     1.0  Productivity measures - Accounts in the 2011 v...   
-    507    98_197     1.3                              Productivity measures   
-    508     9_951     1.3                               Mining and quarrying   
-
-               df_structure_id  
-    0        DCSP_COLTIVAZIONI  
-    1              DCSP_DOPIGP  
-    2        DCSP_MACELLAZIONI  
-    3     DCSP_AGRITURISMO_COM  
-    4          DCSP_DOPIGP_COM  
-    ..                     ...  
-    504      DCCN_SPESAPROTAMB  
-    505  DCCN_PRODUTTIVITA_B14  
-    506  DCCN_PRODUTTIVITA_B11  
-    507      DCCN_PRODUTTIVITA  
-    508          DCCV_CAVE_MIN  
-
-    [509 rows x 4 columns]
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df_id</th>
+      <th>version</th>
+      <th>df_description</th>
+      <th>df_structure_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>101_1015</td>
+      <td>1.3</td>
+      <td>Crops</td>
+      <td>DCSP_COLTIVAZIONI</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>101_1030</td>
+      <td>1.0</td>
+      <td>PDO, PGI and TSG quality products</td>
+      <td>DCSP_DOPIGP</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>101_1033</td>
+      <td>1.0</td>
+      <td>slaughtering</td>
+      <td>DCSP_MACELLAZIONI</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>101_1039</td>
+      <td>1.2</td>
+      <td>Agritourism - municipalities</td>
+      <td>DCSP_AGRITURISMO_COM</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>101_1077</td>
+      <td>1.0</td>
+      <td>PDO, PGI and TSG products:  operators - municipalities data</td>
+      <td>DCSP_DOPIGP_COM</td>
+    </tr>
+  </tbody>
+</table>
 
 You can also search for a specific dataset (in this example, a dataset
 on imports), by doing:
@@ -87,15 +108,40 @@ discovery.search_dataset("import")
     /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
       warnings.warn(
 
-          df_id version                                     df_description  \
-    10  101_962     1.0                            Livestock import export   
-    47  139_176     1.0  Import and export by country and commodity Nac...   
-    49  143_222     1.0                  Import price index - monthly data   
-
-          df_structure_id  
-    10  DCSP_LIVESTIMPEXP  
-    47     DCSP_COEIMPEX1  
-    49     DCSC_PREIMPIND  
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df_id</th>
+      <th>version</th>
+      <th>df_description</th>
+      <th>df_structure_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>101_962</td>
+      <td>1.0</td>
+      <td>Livestock import export</td>
+      <td>DCSP_LIVESTIMPEXP</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>139_176</td>
+      <td>1.0</td>
+      <td>Import and export by country and commodity Nace 2007</td>
+      <td>DCSP_COEIMPEX1</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>143_222</td>
+      <td>1.0</td>
+      <td>Import price index - monthly data</td>
+      <td>DCSC_PREIMPIND</td>
+    </tr>
+  </tbody>
+</table>
 
 To retrieve data from a specific dataset, we first need to create an
 instance of the
@@ -149,12 +195,48 @@ ds.dimensions_info()
     /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
       warnings.warn(
 
-              dimension         dimension_ID          description
-    0              FREQ              CL_FREQ            Frequency
-    1  MERCE_ATECO_2007  CL_ATECO_2007_MERCE  Commodity Nace 2007
-    2     PAESE_PARTNER               CL_ISO          Geopolitics
-    3          ITTER107          CL_ITTER107            Territory
-    4         TIPO_DATO       CL_TIPO_DATO12         Data type 12
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dimension</th>
+      <th>dimension_ID</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>FREQ</td>
+      <td>CL_FREQ</td>
+      <td>Frequency</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>MERCE_ATECO_2007</td>
+      <td>CL_ATECO_2007_MERCE</td>
+      <td>Commodity Nace 2007</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PAESE_PARTNER</td>
+      <td>CL_ISO</td>
+      <td>Geopolitics</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ITTER107</td>
+      <td>CL_ITTER107</td>
+      <td>Territory</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TIPO_DATO</td>
+      <td>CL_TIPO_DATO12</td>
+      <td>Data type 12</td>
+    </tr>
+  </tbody>
+</table>
 
 Now, each dimension can have a few possible values. `istatapi` provides
 a quick method to analyze these values and print their English
@@ -165,13 +247,47 @@ dimension = "TIPO_DATO" #use "dimension" column from above
 ds.get_dimension_values(dimension)
 ```
 
-      values_ids                                 values_description
-    0         EV                              export - value (euro)
-    1        TBV                       trade balance - value (euro)
-    2       ISAV  import - seasonally adjusted value - world bas...
-    3       ESAV  export - seasonally adjusted value - world bas...
-    4      TBSAV  trade balance - seasonally adjusted value  -wo...
-    5         IV                              import - value (euro)
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>values_ids</th>
+      <th>values_description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>EV</td>
+      <td>export - value (euro)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>TBV</td>
+      <td>trade balance - value (euro)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ISAV</td>
+      <td>import - seasonally adjusted value - world based model (millions of euro)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ESAV</td>
+      <td>export - seasonally adjusted value - world based model (millions of euro)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TBSAV</td>
+      <td>trade balance - seasonally adjusted value  -world based model (millions of euro)</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>IV</td>
+      <td>import - value (euro)</td>
+    </tr>
+  </tbody>
+</table>
 
 If we do not filter any of our variables, the data will just include all
 the possible values in the dataset. This could result in too much data
@@ -204,29 +320,132 @@ trade_df = retrieval.get_data(ds)
 trade_df.head()
 ```
 
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-
-                 DATAFLOW FREQ  MERCE_ATECO_2007 PAESE_PARTNER ITTER107 TIPO_DATO  \
-    0    IT1:139_176(1.0)    M                10         WORLD    ITTOT      ESAV   
-    360  IT1:139_176(1.0)    M                10         WORLD    ITTOT      ISAV   
-    364  IT1:139_176(1.0)    M                10         WORLD    ITTOT      ISAV   
-    4    IT1:139_176(1.0)    M                10         WORLD    ITTOT      ESAV   
-    365  IT1:139_176(1.0)    M                10         WORLD    ITTOT      ISAV   
-
-        TIME_PERIOD  OBS_VALUE  BREAK  CONF_STATUS  OBS_PRE_BREAK  OBS_STATUS  \
-    0    1993-01-01      10775    NaN          NaN            NaN         NaN   
-    360  1993-01-01       9229    NaN          NaN            NaN         NaN   
-    364  1993-02-01      10014    NaN          NaN            NaN         NaN   
-    4    1993-02-01      10692    NaN          NaN            NaN         NaN   
-    365  1993-03-01       9951    NaN          NaN            NaN         NaN   
-
-         BASE_PER  UNIT_MEAS  UNIT_MULT  METADATA_EN  METADATA_IT  
-    0         NaN        NaN        NaN          NaN          NaN  
-    360       NaN        NaN        NaN          NaN          NaN  
-    364       NaN        NaN        NaN          NaN          NaN  
-    4         NaN        NaN        NaN          NaN          NaN  
-    365       NaN        NaN        NaN          NaN          NaN  
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>FREQ</th>
+      <th>MERCE_ATECO_2007</th>
+      <th>PAESE_PARTNER</th>
+      <th>ITTER107</th>
+      <th>TIPO_DATO</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>BREAK</th>
+      <th>CONF_STATUS</th>
+      <th>OBS_PRE_BREAK</th>
+      <th>OBS_STATUS</th>
+      <th>BASE_PER</th>
+      <th>UNIT_MEAS</th>
+      <th>UNIT_MULT</th>
+      <th>METADATA_EN</th>
+      <th>METADATA_IT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>IT1:139_176(1.0)</td>
+      <td>M</td>
+      <td>10</td>
+      <td>WORLD</td>
+      <td>ITTOT</td>
+      <td>ESAV</td>
+      <td>1993-01-01</td>
+      <td>10775</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>360</th>
+      <td>IT1:139_176(1.0)</td>
+      <td>M</td>
+      <td>10</td>
+      <td>WORLD</td>
+      <td>ITTOT</td>
+      <td>ISAV</td>
+      <td>1993-01-01</td>
+      <td>9229</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>364</th>
+      <td>IT1:139_176(1.0)</td>
+      <td>M</td>
+      <td>10</td>
+      <td>WORLD</td>
+      <td>ITTOT</td>
+      <td>ISAV</td>
+      <td>1993-02-01</td>
+      <td>10014</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>IT1:139_176(1.0)</td>
+      <td>M</td>
+      <td>10</td>
+      <td>WORLD</td>
+      <td>ITTOT</td>
+      <td>ESAV</td>
+      <td>1993-02-01</td>
+      <td>10692</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>365</th>
+      <td>IT1:139_176(1.0)</td>
+      <td>M</td>
+      <td>10</td>
+      <td>WORLD</td>
+      <td>ITTOT</td>
+      <td>ISAV</td>
+      <td>1993-03-01</td>
+      <td>9951</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 Now that we have our data, we can do whatever we want with it. For
 example, we can plot the data after having it cleaned up a bit. You are
@@ -303,7 +522,7 @@ plt.ylabel("Value in billions of euros")
 plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, loc: "{:,}".format(int(x/1000))))
 ```
 
-![](index_files/figure-commonmark/cell-10-output-1.png)
+![](index_files/figure-commonmark/cell-15-output-1.png)
 
 With just a few lines of code, we have been able to retrieve data from
 ISTAT and make a simple plot. This is just a simple example of what you
