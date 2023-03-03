@@ -19,8 +19,8 @@ class ISTAT:
         url = "/".join([self.base_url, path])
 
         if "headers" in kwargs.keys():
-            response = requests.get(url, headers=kwargs["headers"], verify=False)
+            response = requests.get(url, headers=kwargs["headers"])
         else:
-            response = requests.get(url, verify=False)
+            response = requests.get(url)
 
         return response
