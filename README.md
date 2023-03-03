@@ -44,9 +44,6 @@ simply using the following function:
 discovery.all_available()
 ```
 
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -103,11 +100,6 @@ on imports), by doing:
 discovery.search_dataset("import")
 ```
 
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -157,23 +149,6 @@ class what dataset we want to retrieve. Here, we are going to use the
 ds = discovery.DataSet(dataflow_identifier="139_176")
 ```
 
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-
 We now want to see what variables are included in the dataset that we
 are analysing. With `istatapi` we can easily print its variables
 (“dimensions” in ISTAT terminology) and their description.
@@ -181,19 +156,6 @@ are analysing. With `istatapi` we can easily print its variables
 ``` python
 ds.dimensions_info()
 ```
-
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
-    /home/jacopo/anaconda3/envs/istatapi/lib/python3.10/site-packages/urllib3/connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sdmx.istat.it'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
-      warnings.warn(
 
 <table border="1" class="dataframe">
   <thead>
