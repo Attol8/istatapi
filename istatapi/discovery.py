@@ -70,7 +70,7 @@ def search_dataset(keyword):
 # TODO: Add datasets description attribute
 
 class DataSet(ISTAT):
-    """Class that implements methods to retrieve informations (metadata) about a Dataset"""
+    """dataclass that implements methods to retrieve informations (metadata) about a Dataset and store them as attributes."""
 
     def __init__(self, dataflow_identifier):
         super().__init__()
