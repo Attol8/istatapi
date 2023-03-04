@@ -66,189 +66,20 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb 17
+# %% ../nbs/01_discovery.ipynb 16
 # TODO: Add datasets description attribute
 
+<<<<<<< HEAD
 @dataclass
 class DataSet():
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
     dataflow_identifier: str
     all_available: pd.DataFrame = available_datasets
     resource: str = "datastructure"
-
-    def __post_init__(self):
-        self.identifiers = self.set_identifiers(self.dataflow_identifier)
-        self.dimensions = self.dimensions_info(description=False).dimension.to_list()
-        self.filters = self.default_filters()
-        self.available_values = self.get_available_values()
-
-    def set_identifiers(self, dataflow_identifier):
-        """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
-        if dataflow_identifier[1] == "_" or dataflow_identifier[2] == "_" or dataflow_identifier[3] == "_":
-            return self.set_from_id(dataflow_identifier)
-        elif dataflow_identifier[4] == "_":
-            return self.set_from_structure_id(dataflow_identifier)
-        else:
-            if type(dataflow_identifier) == str:
-                return self.set_from_description(dataflow_identifier)
-            else:
-                raise ValueError(dataflow_identifier)
-
-    def set_from_id(self, df_id):
-        mask = self.all_available["df_id"] == df_id
-        df = self.all_available[mask]
-        return df.to_dict(orient="records")[0]
-
-    def set_from_structure_id(self, df_structure_id):
-        mask = self.all_available["df_structure_id"] == df_structure_id
-        df = self.all_available[mask]
-        return df.to_dict(orient="records")[0]
-
-    def set_from_description(self, description):
-        mask = self.all_available["df_description"] == description
-        df = self.all_available[mask]
-        return df.to_dict(orient="records")[0]
-
-    def parse_dimensions(self, response):
-        """Parse the `response` containing a dataflow's dimensions and return them in a list"""
-        tree = make_tree(response)
-        strip_ns(tree)
-        root = tree.root
-
-        dimensions_l = []
-        for dimension in root.iter("Dimension"):
-            dimension_name = dimension.attrib["id"]
-
-            dimension_id = [
-                enumeration.find("Ref").get("id")
-                for enumeration in dimension.iter("Enumeration")
-            ][0]
-
-            dimension_dict = {"dimension": dimension_name, "dimension_ID": dimension_id}
-
-            dimensions_l.append(dimension_dict)
-
-        return dimensions_l
-
-    def dimensions_info(self, dataframe=True, description=True):
-        """Return the dimensions of a specific dataflow and their `descriptions`."""
-        df_structure_id = self.identifiers["df_structure_id"]
-        client = ISTAT()
-        path_parts = [self.resource, client.agencyID, df_structure_id]
-        path = "/".join(path_parts)
-        response = client._request(path=path)
-        dimensions = self.parse_dimensions(response)
-
-        if dataframe == True:
-            dimensions = pd.DataFrame(dimensions)
-
-        if description == True:
-            dimensions_description = self.dimensions_description(dimensions)
-            dimensions = dimensions.merge(dimensions_description, on="dimension_ID")
-
-        return dimensions
-
-    def dimensions_description(self, dimensions):
-        """Return a dataframe with the descriptions of `dimensions`"""
-        resource = "codelist"
-        dimensions_l = dimensions.dimension_ID.tolist()
-        descriptions_l = []
-
-        for dimension_id in dimensions_l:
-            client = ISTAT()
-            path_parts = [resource, client.agencyID, dimension_id]
-            path = "/".join(path_parts)
-            response = client._request(path=path)
-            tree = make_tree(response)
-            strip_ns(tree)
-            root = tree.root
-
-            description = [x for x in root.iter("Codelist")][0]
-            # description_it = description.findall('Name')[0].text
-            description = description.findall("Name")[1].text
-
-            description_dict = {
-                "dimension_ID": dimension_id,
-                "description": description,
-            }
-            descriptions_l.append(description_dict)
-
-        dimensions_descriptions = pd.DataFrame(descriptions_l)
-
-        return dimensions_descriptions
-
-    def get_available_values(self):
-        """Return a dictionary with available values for each dimension in the DataSet instance"""
-        resource = "availableconstraint"
-        client = ISTAT()
-        df_id = self.identifiers["df_id"]
-        path_parts = [
-            resource,
-            df_id,
-            "?references=all&detail=full",
-        ]  # TODO: pass them as parameters
-        path = "/".join(path_parts)
-        response = client._request(path=path)
-        tree = make_tree(response)
-        strip_ns(tree)
-        root = tree.root
-
-        dimensions_values = {}
-
-        for dimension in root.iter("Codelist"):
-            dimension_id = dimension.get("id")
-
-            values = {}
-            value_id_l, value_descr_l = [], []
-
-            for value in dimension.iter("Code"):
-                value_id = value.get("id")
-                value_descr = [name.text for name in value.findall("Name")][1]
-                value_id_l.append(value_id)
-                value_descr_l.append(value_descr)
-
-            values["values_ids"] = value_id_l
-            values["values_description"] = value_descr_l
-            dimensions_values[dimension_id] = values
-
-        for dimension_id in list(dimensions_values.keys()):
-            dimension = self.get_dimension_name(dimension_id)
-            dimensions_values[dimension] = dimensions_values.pop(dimension_id)
-
-        return dimensions_values
-
-    def get_dimension_values(self, dimension, dataframe=True):
-        """Return the available values of a single `dimension` in the dataset"""
-        dimension_dict = self.available_values[dimension]
-        dimension_df = pd.DataFrame.from_dict(dimension_dict)
-        return dimension_df if dataframe else dimension_dict
-
-    def get_dimension_name(self, dimension_id):
-        """Convert `dimension_id` to `dimension`"""
-        dimensions_df = self.dimensions_info(description=False)
-        mask = dimensions_df["dimension_ID"] == dimension_id
-        dimension = dimensions_df[mask]["dimension"]
-        return dimension.values[0]
-
-    def default_filters(self):
-        """"initiate self.filters with default values"""
-        default_filters = {}  
-        # no filter equals all values (default)
-        for dimension in self.dimensions:
-            default_filters[dimension] = "."
-        return default_filters
-
-    def set_filters(self, **kwargs):
-        """set filters for the dimensions of the dataset by passing dimension_name=value"""
-        # add kwargs in case passed
-        for arg, arg_value in kwargs.items():
-            self.filters[arg.upper()] = arg_value
-
-# %% ../nbs/01_discovery.ipynb 19
-# TODO: Add datasets description attribute
-
+=======
 class DataSet(ISTAT):
     """dataclass that implements methods to retrieve informations (metadata) about a Dataset and store them as attributes."""
+>>>>>>> master
 
     def __post_init__(self):
         self.identifiers = self.set_identifiers(self.dataflow_identifier)
