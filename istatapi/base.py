@@ -23,14 +23,17 @@ class ISTAT:
         else:
             headers = {}
         url = "/".join([self.base_url, path])
-        headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+        headers[
+            "User-Agent"
+        ] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
         # response = requests.get(url, headers=headers, verify = False)
         session = get_custom_ssl_session()
         response = session.get(url, headers=headers)
         return response
 
-class CustomHttpAdapter (requests.adapters.HTTPAdapter):
-    '''Transport adapter" that allows us to use custom ssl_context.'''
+
+class CustomHttpAdapter(requests.adapters.HTTPAdapter):
+    """Transport adapter" that allows us to use custom ssl_context."""
 
     def __init__(self, ssl_context=None, **kwargs):
         self.ssl_context = ssl_context
@@ -38,13 +41,17 @@ class CustomHttpAdapter (requests.adapters.HTTPAdapter):
 
     def init_poolmanager(self, connections, maxsize, block=False):
         self.poolmanager = urllib3.poolmanager.PoolManager(
-            num_pools=connections, maxsize=maxsize,
-            block=block, ssl_context=self.ssl_context)
-        
+            num_pools=connections,
+            maxsize=maxsize,
+            block=block,
+            ssl_context=self.ssl_context,
+        )
+
+
 def get_custom_ssl_session():
-    '''Get a session with a custom ssl context'''
-    session = requests.session()        
+    """Get a session with a custom ssl context"""
+    session = requests.session()
     ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
     ctx.options |= 0x4
-    session.mount('https://', CustomHttpAdapter(ctx))
+    session.mount("https://", CustomHttpAdapter(ctx))
     return session

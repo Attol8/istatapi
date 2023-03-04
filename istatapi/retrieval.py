@@ -38,7 +38,6 @@ def make_url_key(filters: dict):
     key = ""
 
     for i, filter_tuple in enumerate(filters.items()):
-
         filter = filter_tuple[0]
         filter_value = filter_tuple[1]
 
