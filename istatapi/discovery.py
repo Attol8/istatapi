@@ -7,6 +7,7 @@ __all__ = ['parse_dataflows', 'all_available', 'search_dataset', 'DataSet']
 from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
+from dataclasses import dataclass
 
 # %% ../nbs/01_discovery.ipynb 5
 def parse_dataflows(response):
@@ -66,22 +67,20 @@ def search_dataset(keyword):
     return dataflows
 
 # %% ../nbs/01_discovery.ipynb 16
-# TODO: Make it into a dataclass
 # TODO: Add datasets description attribute
 
-class DataSet(ISTAT):
+@dataclass
+class DataSet():
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
+    dataflow_identifier: str
+    all_available: pd.DataFrame = available_datasets
+    resource: str = "datastructure"
 
-    def __init__(self, dataflow_identifier):
-        super().__init__()
-        self.resource = "datastructure"
-        self.all_available = all_available()  # df with all the available dataflows
-        self.identifiers = self.set_identifiers(dataflow_identifier)
-        self.available_values = self.get_available_values()
-        self.dimensions = list(self.dimensions_info(description=False).dimension)
+    def __post_init__(self):
+        self.identifiers = self.set_identifiers(self.dataflow_identifier)
+        self.dimensions = self.dimensions_info(description=False).dimension.to_list()
         self.filters = self.default_filters()
-        # self.dimensions_values = self.available_dimensions_values()
-        
+        self.available_values = self.get_available_values()
 
     def set_identifiers(self, dataflow_identifier):
         """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
@@ -134,10 +133,10 @@ class DataSet(ISTAT):
     def dimensions_info(self, dataframe=True, description=True):
         """Return the dimensions of a specific dataflow and their `descriptions`."""
         df_structure_id = self.identifiers["df_structure_id"]
-
-        path_parts = [self.resource, self.agencyID, df_structure_id]
+        client = ISTAT()
+        path_parts = [self.resource, client.agencyID, df_structure_id]
         path = "/".join(path_parts)
-        response = self._request(path=path)
+        response = client._request(path=path)
         dimensions = self.parse_dimensions(response)
 
         if dataframe == True:
@@ -156,9 +155,10 @@ class DataSet(ISTAT):
         descriptions_l = []
 
         for dimension_id in dimensions_l:
-            path_parts = [resource, self.agencyID, dimension_id]
+            client = ISTAT()
+            path_parts = [resource, client.agencyID, dimension_id]
             path = "/".join(path_parts)
-            response = self._request(path=path)
+            response = client._request(path=path)
             tree = make_tree(response)
             strip_ns(tree)
             root = tree.root
@@ -180,6 +180,7 @@ class DataSet(ISTAT):
     def get_available_values(self):
         """Return a dictionary with available values for each dimension in the DataSet instance"""
         resource = "availableconstraint"
+        client = ISTAT()
         df_id = self.identifiers["df_id"]
         path_parts = [
             resource,
@@ -187,7 +188,7 @@ class DataSet(ISTAT):
             "?references=all&detail=full",
         ]  # TODO: pass them as parameters
         path = "/".join(path_parts)
-        response = self._request(path=path)
+        response = client._request(path=path)
         tree = make_tree(response)
         strip_ns(tree)
         root = tree.root
