@@ -8,7 +8,7 @@ import requests
 import urllib3
 import ssl
 
-# %% ../nbs/00_base.ipynb 3
+# %% ../nbs/00_base.ipynb 4
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
 

@@ -7,7 +7,7 @@ __all__ = ['make_tree', 'strip_ns']
 import xml.etree.ElementTree as ET
 from io import StringIO
 
-# %% ../nbs/02_utils.ipynb 3
+# %% ../nbs/02_utils.ipynb 4
 def make_tree(response):
     """Make an `ElementTree` from the text of an XML `response`"""
     tree = ET.iterparse(StringIO(response.text))

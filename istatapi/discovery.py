@@ -67,21 +67,19 @@ def search_dataset(keyword):
     return dataflows
 
 # %% ../nbs/01_discovery.ipynb 16
-# TODO: Add datasets description attribute
-
 @dataclass
-class DataSet():
+class DataSet:
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
     dataflow_identifier: str
-    all_available: pd.DataFrame = all_available(dataframe=True)
     resource: str = "datastructure"
 
     def __post_init__(self):
+        self.all_available: pd.DataFrame = all_available(dataframe=True)
         self.identifiers = self.set_identifiers(self.dataflow_identifier)
         self.dimensions = self.dimensions_info(description=False).dimension.to_list()
         self.filters = self.default_filters()
         self.available_values = self.get_available_values()
-
+        
     def set_identifiers(self, dataflow_identifier):
         """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
         if dataflow_identifier[1] == "_" or dataflow_identifier[2] == "_" or dataflow_identifier[3] == "_":
