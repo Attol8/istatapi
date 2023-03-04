@@ -69,12 +69,17 @@ def search_dataset(keyword):
 # %% ../nbs/01_discovery.ipynb 16
 # TODO: Add datasets description attribute
 
+<<<<<<< HEAD
 @dataclass
 class DataSet():
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
     dataflow_identifier: str
-    all_available: pd.DataFrame = all_available(dataframe=True)
+    all_available: pd.DataFrame = available_datasets
     resource: str = "datastructure"
+=======
+class DataSet(ISTAT):
+    """dataclass that implements methods to retrieve informations (metadata) about a Dataset and store them as attributes."""
+>>>>>>> master
 
     def __post_init__(self):
         self.identifiers = self.set_identifiers(self.dataflow_identifier)
