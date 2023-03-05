@@ -61,9 +61,8 @@ def search_dataset(keyword):
     dataflows = all_available()[
         all_available()["df_description"].str.contains(keyword, case=False)
     ]
-
-    if len(dataflows) == 0:
-        raise ValueError("No dataset matching `keyword`")
+    
+    if len(dataflows) == 0: raise ValueError('No dataset matching `keyword`')
 
     return dataflows
 
@@ -71,7 +70,6 @@ def search_dataset(keyword):
 @dataclass
 class DataSet:
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
-
     dataflow_identifier: str
     resource: str = "datastructure"
 
@@ -81,14 +79,10 @@ class DataSet:
         self.dimensions = self.dimensions_info(description=False).dimension.to_list()
         self.filters = self.default_filters()
         self.available_values = self.get_available_values()
-
+        
     def set_identifiers(self, dataflow_identifier):
         """Take any type of `dataflow_identifier` and return all identifiers in a dictionary"""
-        if (
-            dataflow_identifier[1] == "_"
-            or dataflow_identifier[2] == "_"
-            or dataflow_identifier[3] == "_"
-        ):
+        if dataflow_identifier[1] == "_" or dataflow_identifier[2] == "_" or dataflow_identifier[3] == "_":
             return self.set_from_id(dataflow_identifier)
         elif dataflow_identifier[4] == "_":
             return self.set_from_structure_id(dataflow_identifier)
@@ -235,8 +229,8 @@ class DataSet:
         return dimension.values[0]
 
     def default_filters(self):
-        """ "initiate self.filters with default values"""
-        default_filters = {}
+        """"initiate self.filters with default values"""
+        default_filters = {}  
         # no filter equals all values (default)
         for dimension in self.dimensions:
             default_filters[dimension] = "."

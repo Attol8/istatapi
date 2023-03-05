@@ -13,9 +13,8 @@ def make_tree(response):
     tree = ET.iterparse(StringIO(response.text))
     return tree
 
-
-def strip_ns(tree):
+def strip_ns(tree): 
     """strip all the namespaces from `tree`"""
     for _, el in tree:
-        _, _, el.tag = el.tag.rpartition("}")  # strip ns#
+        _, _, el.tag = el.tag.rpartition('}') # strip ns#
     return tree
