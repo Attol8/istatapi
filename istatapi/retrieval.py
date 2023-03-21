@@ -27,7 +27,7 @@ def get_data(dataset: DataSet, **kwargs):
 
     if "TIME_PERIOD" in df.columns:
         df["TIME_PERIOD"] = pd.to_datetime(
-            df["TIME_PERIOD"], infer_datetime_format=True
+            df["TIME_PERIOD"].astype(str), infer_datetime_format=True
         )
         df = df.sort_values(by=["TIME_PERIOD"])
 
