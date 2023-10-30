@@ -15,7 +15,7 @@ RESOURCE = "data"
 
 
 def get_data(dataset: DataSet, **kwargs):
-    "returns a dataframe of the filitered 'dataset'"
+    "returns a dataframe of the filtered 'dataset'"
     flowRef = dataset.identifiers["df_id"]
     filters = dataset.filters
     key = make_url_key(filters)
@@ -27,7 +27,7 @@ def get_data(dataset: DataSet, **kwargs):
 
     if "TIME_PERIOD" in df.columns:
         df["TIME_PERIOD"] = pd.to_datetime(
-            df["TIME_PERIOD"].astype(str), infer_datetime_format=True
+            df["TIME_PERIOD"].astype(str)
         )
         df = df.sort_values(by=["TIME_PERIOD"])
 
