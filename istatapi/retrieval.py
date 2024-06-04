@@ -26,9 +26,15 @@ def get_data(dataset: DataSet, **kwargs):
     df = pd.read_csv(io.StringIO(response.text))
 
     if "TIME_PERIOD" in df.columns:
-        df["TIME_PERIOD"] = pd.to_datetime(
-            df["TIME_PERIOD"].astype(str)
-        )
+        try:
+            df["TIME_PERIOD"] = pd.to_datetime(
+                df["TIME_PERIOD"].astype(str), 
+            )
+        except ValueError:
+            df["TIME_PERIOD"] = pd.to_datetime(
+                df["TIME_PERIOD"].astype(str), 
+                format="mixed"
+            )
         df = df.sort_values(by=["TIME_PERIOD"])
 
     return df

@@ -187,6 +187,8 @@ class DataSet:
         ]  # TODO: pass them as parameters
         path = "/".join(path_parts)
         response = client._request(path=path)
+        if response.text == 'No available data found for the requested query':
+            raise ValueError(f'No available data found for the requested query (dataset {df_id})')
         tree = make_tree(response)
         strip_ns(tree)
         root = tree.root
