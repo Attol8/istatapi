@@ -1,3 +1,34 @@
 [build-system]
-requires = ["setuptools>=36.2", "wheel"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "istatapi"
+dynamic = ["version"]
+description = "Python API for ISTAT (The Italian National Institute of Statistics)"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "Apache-2.0"}
+authors = [{name = "Jacopo Attolini", email = "jacopoattolini@gmail.com"}]
+keywords = ['istat', 'API', 'python', 'development', 'datascience']
+classifiers = ["Natural Language :: English", "Intended Audience :: Developers", "Development Status :: 2 - Pre-Alpha", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only"]
+dependencies = ['fastcore', 'pandas', 'requests', 'matplotlib', 'pyopenssl']
+
+[project.urls]
+Repository = "https://github.com/Attol8/istatapi"
+Documentation = "https://Attol8.github.io/istatapi"
+
+[project.entry-points.nbdev]
+istatapi = "istatapi._modidx:d"
+
+[project.optional-dependencies]
+dev = ['fastcore', 'pandas', 'requests', 'matplotlib', 'black', 'pyopenssl']
+
+[tool.setuptools.dynamic]
+version = {attr = "istatapi.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["istatapi"]
+
+[tool.nbdev]
+recursive = false
