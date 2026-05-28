@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-62a0fb827630e33fd95d729094ca943e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2c7ee61df5f97705813a2ada775cab09.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>parse the <code>response</code> containing all the available datasets and return a list of dataflows.</em></p>
 <p>The simplest way to get a full list of the dataflows provided by ISTAT is to call the method <a href="https://Attol8.github.io/istatapi/discovery.html#all_available"><code>all_available()</code></a> which returns a list of all the explorable dataflows, together with their IDs and descriptions.</p>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L50" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L52" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="all_available" class="level3">
 <h3 class="anchored" data-anchor-id="all_available">all_available</h3>
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>):</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Return all available dataflows</em></p>
-<div id="defaa3d4" class="cell">
+<div id="6f2b1a5b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>available_datasets <span class="op">=</span> all_available()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>available_datasets.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -317,17 +317,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="56a65415" class="cell">
+<div id="f5dbefd9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'number of available datasets: </span><span class="sc">{</span><span class="bu">len</span>(available_datasets)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>number of available datasets: 509</code></pre>
 </div>
 </div>
-<div id="07f265dc" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>test_eq(available_datasets.columns, [<span class="st">'df_id'</span>, <span class="st">'version'</span>, <span class="st">'df_description'</span>, <span class="st">'df_structure_id'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="521e3ed4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">list</span>(available_datasets.columns), [<span class="st">'df_id'</span>, <span class="st">'version'</span>, <span class="st">'df_description'</span>, <span class="st">'df_description_it'</span>, <span class="st">'df_structure_id'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L65" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="search_dataset" class="level3">
 <h3 class="anchored" data-anchor-id="search_dataset">search_dataset</h3>
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Search available dataflows that contain <code>keyword</code>. Return these dataflows in a DataFrame</em></p>
 <p>This method looks for <code>keyword</code> inside all datasets descriptions. By default, the <code>keyword</code> needs to be an english word.</p>
-<div id="a8c77b4c" class="cell">
+<div id="e74d1dd9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> search_dataset(keyword<span class="op">=</span><span class="st">"Tax"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -397,14 +397,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="7fa74e64" class="cell">
+<div id="21ef4e95" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>test_fail(<span class="kw">lambda</span>: search_dataset(keyword<span class="op">=</span><span class="st">"disoccupazione"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="data-structures-and-information-about-available-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="data-structures-and-information-about-available-datasets">Data Structures and Information about available Datasets</h2>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L75" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L77" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="dataset" class="level3">
 <h3 class="anchored" data-anchor-id="dataset">DataSet</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -414,25 +414,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Class that implements methods to retrieve informations (metadata) about a Dataset</em></p>
 <p>The class takes <code>df_id</code>, <code>df_structure_id</code> or <code>df_description</code> as inputs. These 3 values can be found by using the <a href="https://Attol8.github.io/istatapi/discovery.html#all_available"><code>all_available()</code></a> function.</p>
-<div id="ff9d113b" class="cell">
+<div id="6ea7f867" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> DataSet(dataflow_identifier<span class="op">=</span><span class="st">"151_914"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>test_eq(ds.identifiers[<span class="st">'df_id'</span>], <span class="st">'151_914'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>test_eq(ds.identifiers[<span class="st">'df_description'</span>], <span class="st">'Unemployment  rate'</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>test_eq(ds.identifiers[<span class="st">'df_structure_id'</span>], <span class="st">'DCCV_TAXDISOCCU1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="f6747722" class="cell">
+<div id="e515b34e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> DataSet(dataflow_identifier<span class="op">=</span><span class="st">"22_289"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>test_eq(ds2.identifiers[<span class="st">'df_id'</span>], <span class="st">'22_289'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>test_eq(ds2.identifiers[<span class="st">'df_description'</span>], <span class="st">'Resident population  on 1st January'</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>test_eq(ds2.identifiers[<span class="st">'df_structure_id'</span>], <span class="st">'DCIS_POPRES1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="1b63d6fe" class="cell">
+<div id="ca9d34ae" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test Dataset 729_1050 (https://github.com/Attol8/istatapi/issues/24)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(available_datasets.query(<span class="st">'df_id == "729_1050"'</span>)) <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test that it raises ValueError if no dataset is found</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>test_fail(<span class="kw">lambda</span>: DataSet(dataflow_identifier<span class="op">=</span><span class="st">"729_1050"</span>), contains<span class="op">=</span><span class="st">"No available data found for the requested query"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="222cbf60" class="cell">
+<div id="a58fd67a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds2.dimensions_info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>we can look at the dimensions of a dataflow by simply accessing its attribute <code>dimensions</code>. However, we won’t have dimensions’ descriptions here.</p>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L135" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L143" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="dataset.dimensions_info" class="level3">
 <h3 class="anchored" data-anchor-id="dataset.dimensions_info">DataSet.dimensions_info</h3>
@@ -503,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Return the dimensions of a specific dataflow and their <code>descriptions</code>.</em></p>
 <p>To have a look at the dimensions together with their description, we can use the <code>dimension_info</code> function. It will return an easy to read pandas DataFrame.</p>
-<div id="320fe87f" class="cell">
+<div id="c52ce3ec" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dimensions_df <span class="op">=</span> ds.dimensions_info()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>test_eq(dimensions_df.columns, [<span class="st">'dimension'</span>, <span class="st">'dimension_ID'</span>, <span class="st">'description'</span>])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>dimensions_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The values that the different dimensions can take can also be explored. The <code>available_values</code> attribute contains a dictionary with the dimensions of the dataset as keys. The values of the dictionary are themselves dictionaries which can be accessed through the <code>values_ids</code> and <code>values_description</code> keys. The former key returns an ID of the dimension’s values, the latter a description of these values.</p>
-<div id="491010ef" class="cell">
+<div id="6baf7d08" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>values_dict <span class="op">=</span> ds.available_values</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">isinstance</span>(values_dict, <span class="bu">dict</span>), <span class="va">True</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">list</span>(values_dict.keys()).sort(), ds.dimensions.sort())</span>
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>test_eq(values_dict[<span class="st">'DURATA_DISOCCUPAZ'</span>][<span class="st">'values_description'</span>], [<span class="st">'total'</span>, <span class="st">'12 months and over'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L224" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L237" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="dataset.get_dimension_values" class="level3">
 <h3 class="anchored" data-anchor-id="dataset.get_dimension_values">DataSet.get_dimension_values</h3>
@@ -594,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>):</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Return the available values of a single <code>dimension</code> in the dataset</em></p>
-<div id="b77964bd" class="cell">
+<div id="7b4981a9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ds.get_dimension_values(<span class="st">'DURATA_DISOCCUPAZ'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -626,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
-<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L245" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Attol8/istatapi/blob/main/istatapi/discovery.py#L258" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="dataset.set_filters" class="level3">
 <h3 class="anchored" data-anchor-id="dataset.set_filters">DataSet.set_filters</h3>
@@ -636,14 +636,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>):</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>set filters for the dimensions of the dataset by passing dimension_name=value</em></p>
-<div id="4f0a8483" class="cell">
+<div id="162c8d41" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test dataset from https://github.com/Attol8/istatapi/issues/25</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> DataSet(dataflow_identifier <span class="op">=</span> <span class="st">"155_358"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'WAGE_E_2021'</span> <span class="kw">not</span> <span class="kw">in</span> ds.available_values[<span class="st">'TIP_AGGR1'</span>][<span class="st">'values_ids'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With <a href="https://Attol8.github.io/istatapi/discovery.html#dataset.set_filters"><code>DataSet.set_filters()</code></a> we can filter the dimensions of the dataset by passing the values that we want to filter for. The dataset will then only return data containing our filters. A dictionary with the selected filters is contained in the attribute <code>DataSet.filters</code>.</p>
 <p><strong>Note</strong> that the arguments of <a href="https://Attol8.github.io/istatapi/discovery.html#dataset.set_filters"><code>DataSet.set_filters</code></a> are lower case letters, but in <code>DataSet.filters</code> they are converted to upper case to be consistent with dimension names on ISTAT API.</p>
-<div id="7db981d5" class="cell">
+<div id="e3de4872" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dz <span class="op">=</span> DataSet(dataflow_identifier<span class="op">=</span><span class="st">"139_176"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dz.set_filters(freq<span class="op">=</span><span class="st">"M"</span>, tipo_dato<span class="op">=</span>[<span class="st">"ISAV"</span>, <span class="st">"ESAV"</span>], paese_partner<span class="op">=</span><span class="st">"WORLD"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>

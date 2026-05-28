@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Attol8.github.io/istatapi/base.html</loc>
-    <lastmod>2026-05-28T09:16:27.206Z</lastmod>
+    <loc>https://Attol8.github.io/istatapi/index.html</loc>
+    <lastmod>2026-05-28T09:47:57.958Z</lastmod>
   </url>
   <url>
     <loc>https://Attol8.github.io/istatapi/discovery.html</loc>
-    <lastmod>2026-05-28T09:16:27.417Z</lastmod>
+    <lastmod>2026-05-28T09:47:57.986Z</lastmod>
   </url>
   <url>
     <loc>https://Attol8.github.io/istatapi/utils.html</loc>
-    <lastmod>2026-05-28T09:16:27.301Z</lastmod>
+    <lastmod>2026-05-28T09:47:57.906Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Attol8.github.io/istatapi/base.html</loc>
+    <lastmod>2026-05-28T09:47:57.916Z</lastmod>
   </url>
   <url>
     <loc>https://Attol8.github.io/istatapi/retrieval.html</loc>
-    <lastmod>2026-05-28T09:16:27.223Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Attol8.github.io/istatapi/index.html</loc>
-    <lastmod>2026-05-28T09:16:27.258Z</lastmod>
+    <lastmod>2026-05-28T09:47:57.970Z</lastmod>
   </url>
 </urlset>
