@@ -7,13 +7,13 @@ Docs: https://Attol8.github.io/istatapiretrieval.html.md"""
 # %% auto #0
 __all__ = ['RESOURCE', 'get_data', 'make_url_key']
 
-# %% ../nbs/03_retrieval.ipynb #040195fa
+# %% ../nbs/03_retrieval.ipynb #ed2b34a7
 from .discovery import DataSet
 from .base import ISTAT
 import pandas as pd
 import io
 
-# %% ../nbs/03_retrieval.ipynb #6e024b39
+# %% ../nbs/03_retrieval.ipynb #d1f36c9b
 RESOURCE = "data"
 # TODO: accept json response as well (?)
 

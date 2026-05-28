@@ -7,7 +7,7 @@ Docs: https://Attol8.github.io/istatapibase.html.md"""
 # %% auto #0
 __all__ = ['ISTAT', 'CustomHttpAdapter', 'get_custom_ssl_session']
 
-# %% ../nbs/00_base.ipynb #1f39c11c
+# %% ../nbs/00_base.ipynb #ac59e93d
 import requests
 import urllib3
 import ssl
@@ -15,7 +15,7 @@ import warnings
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-# %% ../nbs/00_base.ipynb #cfa65ed0
+# %% ../nbs/00_base.ipynb #4ca09926
 class ISTAT:
     """Base class that provides useful functions to communicate with ISTAT API"""
     def __init__(self):

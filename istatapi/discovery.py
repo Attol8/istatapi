@@ -7,13 +7,13 @@ Docs: https://Attol8.github.io/istatapidiscovery.html.md"""
 # %% auto #0
 __all__ = ['parse_dataflows', 'all_available', 'search_dataset', 'DataSet']
 
-# %% ../nbs/01_discovery.ipynb #c6fb3382
+# %% ../nbs/01_discovery.ipynb #e651e19c
 from .base import ISTAT
 from .utils import make_tree, strip_ns
 import pandas as pd
 from dataclasses import dataclass
 
-# %% ../nbs/01_discovery.ipynb #6287b006
+# %% ../nbs/01_discovery.ipynb #5affda7e
 def parse_dataflows(response):
     """parse the `response` containing all the available datasets and return a list of dataflows."""
     tree = make_tree(response)
@@ -27,18 +27,20 @@ def parse_dataflows(response):
         structure_id = [ref.get("id") for ref in dataflow.iter("Ref")][0]
 
         # iter over names and get the descriptions
+        description_en = None
+        description_it = None
         for name in dataflow.findall("Name"):
             lang = name.get("{http://www.w3.org/XML/1998/namespace}lang")
             if lang == "en":
                 description_en = name.text
-            # if lang == 'it':
-            # description_it = name.text
+            elif lang == "it":
+                description_it = name.text
 
         dataflow_dict = {
             "df_id": id,
             "version": version,
             "df_description": description_en,
-            # "description_it": description_it,
+            "df_description_it": description_it,
             "df_structure_id": structure_id,
         }
 
@@ -70,7 +72,7 @@ def search_dataset(keyword):
 
     return dataflows
 
-# %% ../nbs/01_discovery.ipynb #09104378
+# %% ../nbs/01_discovery.ipynb #07915f3d
 @dataclass
 class DataSet:
     """Class that implements methods to retrieve informations (metadata) about a Dataset"""
@@ -99,16 +101,22 @@ class DataSet:
     def set_from_id(self, df_id):
         mask = self.all_available["df_id"] == df_id
         df = self.all_available[mask]
+        if df.empty:
+            raise ValueError(f"Dataflow id '{df_id}' not found in registry. Use all_available() to list valid ids.")
         return df.to_dict(orient="records")[0]
 
     def set_from_structure_id(self, df_structure_id):
         mask = self.all_available["df_structure_id"] == df_structure_id
         df = self.all_available[mask]
+        if df.empty:
+            raise ValueError(f"Structure id '{df_structure_id}' not found in registry. Use all_available() to list valid ids.")
         return df.to_dict(orient="records")[0]
 
     def set_from_description(self, description):
         mask = self.all_available["df_description"] == description
         df = self.all_available[mask]
+        if df.empty:
+            raise ValueError(f"Description '{description}' not found in registry. Use all_available() to list valid descriptions.")
         return df.to_dict(orient="records")[0]
 
     def parse_dimensions(self, response):
@@ -192,7 +200,12 @@ class DataSet:
         path = "/".join(path_parts)
         response = client._request(path=path)
         if response.text == 'No available data found for the requested query':
-            raise ValueError(f'No available data found for the requested query (dataset {df_id})')
+            raise ValueError(
+                f"No available data found for dataset {df_id}. "
+                f"The dataflow exists in the registry but ISTAT's availableconstraint endpoint "
+                f"returned no data — the dataset may be temporarily unavailable, moved behind a paywall, "
+                f"or accessible only through https://dati.istat.it."
+            )
         tree = make_tree(response)
         strip_ns(tree)
         root = tree.root
